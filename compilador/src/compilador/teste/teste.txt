@@ -1,0 +1,7 @@
+'teste';
+programa teste;
+
+real numero = 0;
+caractere texto = 'texto testado agora';
+
+fim.
