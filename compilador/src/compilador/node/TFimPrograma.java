@@ -5,16 +5,16 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TCaractere extends Token
+public final class TFimPrograma extends Token
 {
-    public TCaractere()
+    public TFimPrograma()
     {
-        super.setText("caractere");
+        super.setText("fim.");
     }
 
-    public TCaractere(int line, int pos)
+    public TFimPrograma(int line, int pos)
     {
-        super.setText("caractere");
+        super.setText("fim.");
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,18 @@ public final class TCaractere extends Token
     @Override
     public Object clone()
     {
-      return new TCaractere(getLine(), getPos());
+      return new TFimPrograma(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTCaractere(this);
+        ((Analysis) sw).caseTFimPrograma(this);
     }
 
     @Override
     public void setText(@SuppressWarnings("unused") String text)
     {
-        throw new RuntimeException("Cannot change TCaractere text.");
+        throw new RuntimeException("Cannot change TFimPrograma text.");
     }
 }

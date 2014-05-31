@@ -11,23 +11,27 @@ public interface Analysis extends Switch
     Object getOut(Node node);
     void setOut(Node node, Object o);
 
+    void caseTComentario(TComentario node);
     void caseTBranco(TBranco node);
     void caseTPrograma(TPrograma node);
     void caseTInicio(TInicio node);
-    void caseTFim(TFim node);
-    void caseTPonto(TPonto node);
+    void caseTFimPrograma(TFimPrograma node);
     void caseTDoispontos(TDoispontos node);
     void caseTVirgula(TVirgula node);
     void caseTPontovirgula(TPontovirgula node);
     void caseTAbrecolchete(TAbrecolchete node);
     void caseTFechacolchete(TFechacolchete node);
+    void caseTParenteseesquerda(TParenteseesquerda node);
+    void caseTParentesedireita(TParentesedireita node);
+    void caseTAtribuicao(TAtribuicao node);
+    void caseTConst(TConst node);
     void caseTInteiro(TInteiro node);
     void caseTReal(TReal node);
     void caseTCaractere(TCaractere node);
     void caseTId(TId node);
     void caseTNInteiro(TNInteiro node);
     void caseTNReal(TNReal node);
-    void caseTTexto(TTexto node);
+    void caseTString(TString node);
     void caseTAdicao(TAdicao node);
     void caseTSubtracao(TSubtracao node);
     void caseTMultiplicacao(TMultiplicacao node);
@@ -60,9 +64,6 @@ public interface Analysis extends Switch
     void caseTMenorigual(TMenorigual node);
     void caseTMaiorigual(TMaiorigual node);
     void caseTNegacao(TNegacao node);
-    void caseTParenteseesquerda(TParenteseesquerda node);
-    void caseTParentesedireita(TParentesedireita node);
-    void caseTAtribuicao(TAtribuicao node);
     void caseEOF(EOF node);
     void caseInvalidToken(InvalidToken node);
 }

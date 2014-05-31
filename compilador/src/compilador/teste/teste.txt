@@ -1,7 +1,13 @@
-'teste';
+'teste'
+'3';
 programa teste;
 
-real numero = 0;
+//testando comentario de linha;dfd*//**/fefe f fe f e       ff
+/* teste comentario multi-linha
+testando novamente /* o texto comentado */
+
+real _numero = 0;
+inteiro _numero2;
 caractere texto = 'texto testado agora';
 
 fim.

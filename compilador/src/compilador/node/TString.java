@@ -5,14 +5,14 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TNReal extends Token
+public final class TString extends Token
 {
-    public TNReal(String text)
+    public TString(String text)
     {
         setText(text);
     }
 
-    public TNReal(String text, int line, int pos)
+    public TString(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TNReal extends Token
     @Override
     public Object clone()
     {
-      return new TNReal(getText(), getLine(), getPos());
+      return new TString(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTNReal(this);
+        ((Analysis) sw).caseTString(this);
     }
 }

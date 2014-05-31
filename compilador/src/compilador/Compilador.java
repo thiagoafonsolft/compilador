@@ -12,7 +12,7 @@ public class Compilador {
 
 
     public static void main(String[] args) throws FileNotFoundException, LexerException, IOException {
-        File file = new File("C:\\Users\\affonso_oliveira\\Desktop\\compilador\\compilador\\src\\compilador\\teste\\teste.txt");
+        File file = new File("C:\\Documents and Settings\\Affonso\\Desktop\\compilador\\compilador\\compilador\\src\\compilador\\teste\\teste.txt");
         PushbackReader pushbackReader = new PushbackReader(new FileReader(file));
         Lexer lex = new Lexer(pushbackReader);
         String teste = "";

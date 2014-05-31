@@ -6,37 +6,50 @@ tudo = [0..127];
 
 minuscula = ['a'..'z'];
 maiuscula = ['A'..'Z'];
-digito = ['0'..'9'];
 letra = [minuscula + maiuscula];
+numero = ['0'..'9'];
 
 underline = '_';
 tab = 9;
 lf = 10;
 cr = 13;
+quebra = cr | lf | cr lf;
+branco = (' ' | tab | quebra)+;
+caracter = [tudo - [cr + lf]];
+
+v_string = [[[0..127] - [cr + lf]] - '''];
+nao_estrela =    [caracter - '*'] | quebra;
+nao_estrela_nao_barra = [caracter - ['*' + '/']] | quebra;
+comentario_linha = '//' [tudo - [cr + lf]]* quebra?;
+comentario_multi = '/*' nao_estrela+ '*'+ (nao_estrela_nao_barra nao_estrela* '*'+)* '/';
 
 Tokens
 
-branco = (' ' | tab | lf | cr)+;
+comentario = comentario_linha | comentario_multi;
+branco = branco;
 
 programa = 'programa';
 inicio = 'inicio';
-fim = 'fim';
+fim_programa = 'fim.';
 
-ponto = '.';
 doispontos = ':';
 virgula = ',';
 pontovirgula = ';';
 abrecolchete = '[';
 fechacolchete = ']';
+parenteseesquerda = '(';
+parentesedireita = ')';
+atribuicao = '<-';
 
+const = 'const';
 inteiro = 'inteiro';
 real = 'real';
 caractere = 'caractere';
-id = (underline | letra)+ (letra | digito | underline)*;
+id = (underline | letra)+ (letra | numero | underline)*;
 
-n_inteiro = digito+;
-n_real = digito+ '.' digito+;
-texto = ''' [tudo - ''']* ''';
+n_inteiro = numero+;
+n_real = numero+ '.' numero+;
+string = ''' v_string* ''';
 
 adicao = '+';
 subtracao = '-';
@@ -48,24 +61,23 @@ escreva = 'escreva';
 se = 'se';
 entao = 'entao';
 senao = 'senao';
-fimse = 'fimse';
+fimse = 'fim se';
 enquanto = 'enquanto';
-fimenquanto = 'fimenquanto';
+fimenquanto = 'fim enquanto';
 faca = 'faca';
 repita = 'repita';
 de = 'de';
 ate = 'ate';
 avalie = 'avalie';
-fimavalie = 'fimavalie';
+fimavalie = 'fim avalie';
 caso = 'caso';
 para = 'para';
-fimpara = 'fimpara';
+fimpara = 'fim para';
 passo = 'passo';
 
 e = 'e';
 ou = 'ou';
 xor = 'xor';
-
 igual = '=';
 diferente = '<>';
 menor = '<';
@@ -74,11 +86,6 @@ menorigual = '<=';
 maiorigual = '>=';
 negacao = 'nao';
 
-parenteseesquerda = '(';
-parentesedireita = ')';
-atribuicao = '<-';
-
 
 Ignored Tokens
-
-branco;
+branco,comentario;

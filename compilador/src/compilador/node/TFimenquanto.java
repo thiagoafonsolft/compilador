@@ -9,12 +9,12 @@ public final class TFimenquanto extends Token
 {
     public TFimenquanto()
     {
-        super.setText("fimenquanto");
+        super.setText("fim enquanto");
     }
 
     public TFimenquanto(int line, int pos)
     {
-        super.setText("fimenquanto");
+        super.setText("fim enquanto");
         setLine(line);
         setPos(pos);
     }

@@ -5,16 +5,16 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TCaractere extends Token
+public final class TConst extends Token
 {
-    public TCaractere()
+    public TConst()
     {
-        super.setText("caractere");
+        super.setText("const");
     }
 
-    public TCaractere(int line, int pos)
+    public TConst(int line, int pos)
     {
-        super.setText("caractere");
+        super.setText("const");
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,18 @@ public final class TCaractere extends Token
     @Override
     public Object clone()
     {
-      return new TCaractere(getLine(), getPos());
+      return new TConst(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTCaractere(this);
+        ((Analysis) sw).caseTConst(this);
     }
 
     @Override
     public void setText(@SuppressWarnings("unused") String text)
     {
-        throw new RuntimeException("Cannot change TCaractere text.");
+        throw new RuntimeException("Cannot change TConst text.");
     }
 }

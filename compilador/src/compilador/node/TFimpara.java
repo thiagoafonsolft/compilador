@@ -9,12 +9,12 @@ public final class TFimpara extends Token
 {
     public TFimpara()
     {
-        super.setText("fimpara");
+        super.setText("fim para");
     }
 
     public TFimpara(int line, int pos)
     {
-        super.setText("fimpara");
+        super.setText("fim para");
         setLine(line);
         setPos(pos);
     }
