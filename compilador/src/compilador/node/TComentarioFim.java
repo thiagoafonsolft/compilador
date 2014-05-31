@@ -5,16 +5,16 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TComentario extends Token
+public final class TComentarioFim extends Token
 {
-    public TComentario()
+    public TComentarioFim()
     {
-        super.setText("/*");
+        super.setText("*/");
     }
 
-    public TComentario(int line, int pos)
+    public TComentarioFim(int line, int pos)
     {
-        super.setText("/*");
+        super.setText("*/");
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,18 @@ public final class TComentario extends Token
     @Override
     public Object clone()
     {
-      return new TComentario(getLine(), getPos());
+      return new TComentarioFim(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTComentario(this);
+        ((Analysis) sw).caseTComentarioFim(this);
     }
 
     @Override
     public void setText(@SuppressWarnings("unused") String text)
     {
-        throw new RuntimeException("Cannot change TComentario text.");
+        throw new RuntimeException("Cannot change TComentarioFim text.");
     }
 }

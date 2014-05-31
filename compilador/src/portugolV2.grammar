@@ -23,9 +23,17 @@ nao_estrela_nao_barra = [caracter - ['*' + '/']] | quebra;
 comentario_linha = '//' [tudo - [cr + lf]]* quebra?;
 comentario_multi = '/*' nao_estrela+ '*'+ (nao_estrela_nao_barra nao_estrela* '*'+)* '/';
 
+States
+normal,
+comentario;
+
 Tokens
 
-comentario = comentario_linha | comentario_multi;
+{normal->comentario, comentario} comentario = '/*';
+{comentario} comentario_fim = '*/';
+{comentario} comentario_corpo = nao_estrela_nao_barra*;
+
+comentario_linha = comentario_linha;
 branco = branco;
 
 programa = 'programa';
@@ -88,4 +96,4 @@ negacao = 'nao';
 
 
 Ignored Tokens
-branco,comentario;
+branco,comentario_linha,comentario;
