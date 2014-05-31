@@ -32,11 +32,9 @@ public class Executar extends Lexer {
             if (state.equals(State.COMENTARIO)) {
                 if (comentario == null) {
                     comentario = (TComentario) token;
-                    strBuffer = new StringBuffer(comentario.getText());
                     contador = 1;
                     token = null;
                 } else {
-                    strBuffer.append(token.getText());
                     if (token instanceof TComentario) {
                         contador++;
                     } else if (token instanceof TComentarioFim) {
@@ -45,7 +43,6 @@ public class Executar extends Lexer {
                     if (contador != 0) {
                         token = null;
                     } else {
-                        //comentario.setText(text.toString());
                         token = comentario;
                         state = State.NORMAL;
                         comentario = null;
