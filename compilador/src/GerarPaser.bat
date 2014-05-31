@@ -7,6 +7,6 @@ rd /S /Q node
 rd /S /Q parser
 cd ..
 pause
-java -jar lib\sablecc.jar lexer.grammar
+java -jar lib\sablecc.jar portugolV2.grammar
 pause
 exit

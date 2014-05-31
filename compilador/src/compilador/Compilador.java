@@ -12,7 +12,8 @@ public class Compilador {
 
 
     public static void main(String[] args) throws FileNotFoundException, LexerException, IOException {
-        File file = new File("C:\\Documents and Settings\\Affonso\\Desktop\\compilador\\compilador\\compilador\\src\\compilador\\teste\\teste.txt");
+        String filePath = new File("").getAbsolutePath();
+        File file = new File(filePath+"/src/compilador/teste/teste.txt");
         PushbackReader pushbackReader = new PushbackReader(new FileReader(file));
         Lexer lex = new Lexer(pushbackReader);
         String teste = "";
