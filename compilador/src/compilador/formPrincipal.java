@@ -5,7 +5,9 @@
  */
 package compilador;
 
+import compilador.lexer.Lexer;
 import compilador.lexer.LexerException;
+import compilador.parser.ParserException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -47,6 +49,7 @@ public class formPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtRetorno = new javax.swing.JTextArea();
         btnAnalisarLexico = new javax.swing.JButton();
+        btnAnaliseAST = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -108,6 +111,13 @@ public class formPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnAnaliseAST.setText("Analisar AST");
+        btnAnaliseAST.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnaliseASTActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,8 +134,10 @@ public class formPrincipal extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCarregarArquivo))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(354, 354, 354)
-                        .addComponent(btnAnalisarLexico)))
+                        .addGap(158, 158, 158)
+                        .addComponent(btnAnalisarLexico)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnAnaliseAST)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,9 +149,11 @@ public class formPrincipal extends javax.swing.JFrame {
                     .addComponent(txtLocalArquivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnAnalisarLexico)
                 .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAnalisarLexico)
+                    .addComponent(btnAnaliseAST))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -180,6 +194,22 @@ public class formPrincipal extends javax.swing.JFrame {
             Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAnalisarLexicoActionPerformed
+
+    private void btnAnaliseASTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnaliseASTActionPerformed
+        PushbackReader pushbackReader = new PushbackReader(new StringReader(txtCodigo.getText()));
+        Lexer lex = new Lexer(pushbackReader);
+        Sintatico sint = new Sintatico(lex);
+        try {
+            txtRetorno.setText(sint.Analisar());
+        } catch (LexerException ex) {
+            Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserException ex) {
+            txtRetorno.setText(ex.getMessage());
+            Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnAnaliseASTActionPerformed
 
     private void carregarArquivo() {
         JFileChooser fileChooser = new JFileChooser();
@@ -235,6 +265,7 @@ public class formPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnalisarLexico;
+    private javax.swing.JButton btnAnaliseAST;
     private javax.swing.JButton btnCarregarArquivo;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
