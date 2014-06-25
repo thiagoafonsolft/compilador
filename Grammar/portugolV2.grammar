@@ -102,14 +102,27 @@ branco,comentario_linha,comentario;
 Productions
 
     programa =
-        programa_inicio programa_corpo fim_programa ;
+        programa_inicio declaracao_op comando_op fim_programa ;
 
 	programa_inicio =
-		T.programa id inicio;
+		T.programa id inicio ;					
 		
-	programa_corpo = 
-		declaracao? comando?;
+	declaracao_op =
+		{lista} declaracao_lista |
+		{empty} ;
 		
+	comando_op =
+		{lista} comando_lista |
+		{empty} ;
+	
+	declaracao_lista =
+		{dec_lista} declaracao_lista declaracao |
+		{declaracao} declaracao ;
+
+	comando_lista =
+		{com_lista} comando_lista comando |
+		{comando} comando ;		
+	
     declaracao =
         {tipo} tipo doispontos var_virgula_op var pontovirgula |
 		{const} const id valor pontovirgula;		
@@ -120,8 +133,8 @@ Productions
 		{caractere} caractere ;
 		
 	var =
-		{single} id | 
-		{multiple} id abrecolchete n_inteiro fechacolchete ;
+		{id} id | 
+		{vetor} id abrecolchete n_inteiro fechacolchete ;
 		
 	var_virgula_op =
 		{virgula} var virgula |
@@ -136,10 +149,10 @@ Productions
 		{atribuicao} var atribuicao exp pontovirgula |
 		{leia} leia abreparentese var_virgula_op var fechaparentese pontovirgula |
 		{escreva} escreva abreparentese exp_virgula_op exp fechaparentese pontovirgula |	
-		{se} se abreparentese exp_logica fechaparentese entao comando_pvirgula_op? comando_pvirgula senao_opcional fimse pontovirgula |
+		{se} se abreparentese exp_logica fechaparentese entao comando_pvirgula_op comando_pvirgula senao_opcional fimse pontovirgula |
 		{avalie} avalie abreparentese exp fechaparentese caso_valor_op senao_opcional fimavalie pontovirgula |
-		{enquanto} enquanto abreparentese exp_logica fechaparentese faca comando_pvirgula_op? comando_pvirgula fimenquanto pontovirgula |
-		{repita} repita comando_pvirgula_op? comando_pvirgula ate abreparentese exp_logica fechaparentese pontovirgula |
+		{enquanto} enquanto abreparentese exp_logica fechaparentese faca comando_pvirgula_op comando_pvirgula fimenquanto pontovirgula |
+		{repita} repita comando_pvirgula_op comando_pvirgula ate abreparentese exp_logica fechaparentese pontovirgula |
 		{para} para_inicio para_fim |
 		{passo} para_inicio passo n_inteiro para_fim ;
 
@@ -151,8 +164,8 @@ Productions
 		{empty} ;
 		
 	senao_opcional =
-		{senao} senao comando_pvirgula? comando pontovirgula |
-		{senaodoispontos} senao doispontos comando_pvirgula? comando pontovirgula |
+		{senao} senao comando_pvirgula_op comando pontovirgula |
+		{senaodoispontos} senao doispontos comando_pvirgula_op comando pontovirgula |
 		{empty} ;
 	
 	caso_valor_op =
@@ -163,33 +176,56 @@ Productions
 		para var de n_inteiro ;
 		
 	para_fim =
-		ate n_inteiro faca comando_pvirgula_op? comando_pvirgula fimpara pontovirgula ;
+		ate n_inteiro faca comando_pvirgula_op comando_pvirgula fimpara pontovirgula ;
 		
-	exp = 
-		{valor} valor |
-		{var} var |
-		{exp} abreparentese exp fechaparentese |
+	exp = 		
+		{soma_exp} soma_exp |
 		{subtracaoexp} subtracao exp |
-		{adicao} exp adicao exp |
-		{subtracao} exp subtracao exp |
-		{multiplicacao} exp multiplicacao exp |
-		{divisao} exp divisao exp |
-		{exp_logica} exp_logica ;				
+		{exp_logica} exp_logica ;
+		
+	soma_relacional =
+		soma_exp relacional ;
+
+	soma_exp =
+		{soma} soma_exp soma termo |
+		{termo} termo ;
+	
+	termo =
+		{mult} termo mult fator |
+		{fator} fator ;
 	
 	exp_virgula_op =
 		{virgula} exp virgula |
 		{empty} ;
 		
-	exp_logica =
-		{igual} exp igual exp |
-		{diferente} exp diferente exp |
-		{menorigual} exp menorigual exp |
-		{maiorigual} exp maiorigual exp |
-		{menor} exp menor exp |
-		{maior} exp maior exp |
+	exp_logica =		
+		{relacional} soma_relacional soma_exp |
 		{negacao} negacao exp_logica |
-		{e} exp_logica e exp_logica |
-		{ou} exp_logica ou exp_logica |
-		{xor} exp_logica xor exp_logica ;
+		{logico} op_logico exp_logica ;
+		
+	soma = 
+		{adicao} adicao |
+		{subtracao} subtracao ;
 	
+	mult =
+		{multiplicacao} multiplicacao |
+		{divisao} divisao ;
+		
+	op_logico =
+		{e} e |
+		{ou} ou |
+		{xor} xor ;
+	
+	relacional =
+		{igual} igual |
+		{diferente} diferente |
+		{menorigual} menorigual |
+		{maiorigual} maiorigual | 
+		{menor} menor |
+		{maior} maior ;
+	
+	fator =
+		{exp} abreparentese exp fechaparentese |
+		{valor} valor |
+		{var} var ;
 	

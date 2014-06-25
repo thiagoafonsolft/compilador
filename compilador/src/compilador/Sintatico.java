@@ -15,13 +15,13 @@ import java.io.PushbackReader;
 
 public class Sintatico extends Parser {
 
-    public Sintatico(Lexer lexer) {
+    public Sintatico(Lexico lexer) {
         super(lexer);
     }
 
     public String Analisar() throws LexerException, LexerException, IOException, ParserException {
         Start tree = parse();        
-        System.out.println("CSTTree.........\n" + tree.toString());        
-        return "CSTTree.........\n" + tree.toString();
+        System.out.println("Arvore Formada!!\n" + tree.toString());        
+        return "Arvore Formada!!\n" + tree.toString();
     }
 }

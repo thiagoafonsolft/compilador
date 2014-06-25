@@ -197,7 +197,7 @@ public class formPrincipal extends javax.swing.JFrame {
 
     private void btnAnaliseASTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnaliseASTActionPerformed
         PushbackReader pushbackReader = new PushbackReader(new StringReader(txtCodigo.getText()));
-        Lexer lex = new Lexer(pushbackReader);
+        Lexico lex = new Lexico(pushbackReader);
         Sintatico sint = new Sintatico(lex);
         try {
             txtRetorno.setText(sint.Analisar());
@@ -206,7 +206,7 @@ public class formPrincipal extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParserException ex) {
-            txtRetorno.setText(ex.getMessage());
+            txtRetorno.setText(ex.getMessage().replace("expecting", "esperando"));
             Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnAnaliseASTActionPerformed
