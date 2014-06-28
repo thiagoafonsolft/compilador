@@ -156,10 +156,10 @@ Productions
 		{atribuicao} var atribuicao exp pontovirgula |
 		{leia} leia abreparentese var_virgula_op var fechaparentese pontovirgula |
 		{escreva} escreva abreparentese exp_virgula_op exp fechaparentese pontovirgula |	
-		{se} se abreparentese exp_logica fechaparentese entao comando_op_lista senao_op fimse pontovirgula |
+		{se} se abreparentese exp_logica_lista fechaparentese entao comando_op_lista senao_op fimse pontovirgula |
 		{avalie} avalie abreparentese exp fechaparentese caso_valor_op senao_doispontos_op fimavalie pontovirgula |
-		{enquanto} enquanto abreparentese exp_logica fechaparentese faca comando_op_lista fimenquanto pontovirgula |
-		{repita} repita comando_op_lista ate abreparentese exp_logica fechaparentese pontovirgula |
+		{enquanto} enquanto abreparentese exp_logica_lista fechaparentese faca comando_op_lista fimenquanto pontovirgula |
+		{repita} repita comando_op_lista ate abreparentese exp_logica_lista fechaparentese pontovirgula |
 		{para} para_inicio para_fim |
 		{passo} para_inicio passo n_inteiro para_fim ;
 			
@@ -225,10 +225,17 @@ Productions
 	exp_virgula =
 		exp virgula;
 		
+	exp_logica_lista =
+		{lista} exp_logica_lista exp_logica |
+		{exp_logica} exp_logica ;
+		
 	exp_logica =		
-		{relacional} soma_relacional soma_exp |
+		{relacional} exp_logica_original |
 		{negacao} negacao exp_logica |
-		{logico} op_logico exp_logica ;
+		{logico} exp_logica_original logico_eouxor ;
+		
+	exp_logica_original =
+		soma_relacional soma_exp ;
 		
 	soma = 
 		{adicao} adicao |
@@ -237,6 +244,9 @@ Productions
 	mult =
 		{multiplicacao} multiplicacao |
 		{divisao} divisao ;
+		
+	logico_eouxor =
+		op_logico exp_logica ;
 		
 	op_logico =
 		{e} e |

@@ -7,8 +7,7 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class ARelacionalExpLogica extends PExpLogica
 {
-    private PSomaRelacional _somaRelacional_;
-    private PSomaExp _somaExp_;
+    private PExpLogicaOriginal _expLogicaOriginal_;
 
     public ARelacionalExpLogica()
     {
@@ -16,13 +15,10 @@ public final class ARelacionalExpLogica extends PExpLogica
     }
 
     public ARelacionalExpLogica(
-        @SuppressWarnings("hiding") PSomaRelacional _somaRelacional_,
-        @SuppressWarnings("hiding") PSomaExp _somaExp_)
+        @SuppressWarnings("hiding") PExpLogicaOriginal _expLogicaOriginal_)
     {
         // Constructor
-        setSomaRelacional(_somaRelacional_);
-
-        setSomaExp(_somaExp_);
+        setExpLogicaOriginal(_expLogicaOriginal_);
 
     }
 
@@ -30,8 +26,7 @@ public final class ARelacionalExpLogica extends PExpLogica
     public Object clone()
     {
         return new ARelacionalExpLogica(
-            cloneNode(this._somaRelacional_),
-            cloneNode(this._somaExp_));
+            cloneNode(this._expLogicaOriginal_));
     }
 
     @Override
@@ -40,16 +35,16 @@ public final class ARelacionalExpLogica extends PExpLogica
         ((Analysis) sw).caseARelacionalExpLogica(this);
     }
 
-    public PSomaRelacional getSomaRelacional()
+    public PExpLogicaOriginal getExpLogicaOriginal()
     {
-        return this._somaRelacional_;
+        return this._expLogicaOriginal_;
     }
 
-    public void setSomaRelacional(PSomaRelacional node)
+    public void setExpLogicaOriginal(PExpLogicaOriginal node)
     {
-        if(this._somaRelacional_ != null)
+        if(this._expLogicaOriginal_ != null)
         {
-            this._somaRelacional_.parent(null);
+            this._expLogicaOriginal_.parent(null);
         }
 
         if(node != null)
@@ -62,55 +57,23 @@ public final class ARelacionalExpLogica extends PExpLogica
             node.parent(this);
         }
 
-        this._somaRelacional_ = node;
-    }
-
-    public PSomaExp getSomaExp()
-    {
-        return this._somaExp_;
-    }
-
-    public void setSomaExp(PSomaExp node)
-    {
-        if(this._somaExp_ != null)
-        {
-            this._somaExp_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._somaExp_ = node;
+        this._expLogicaOriginal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._somaRelacional_)
-            + toString(this._somaExp_);
+            + toString(this._expLogicaOriginal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._somaRelacional_ == child)
+        if(this._expLogicaOriginal_ == child)
         {
-            this._somaRelacional_ = null;
-            return;
-        }
-
-        if(this._somaExp_ == child)
-        {
-            this._somaExp_ = null;
+            this._expLogicaOriginal_ = null;
             return;
         }
 
@@ -121,15 +84,9 @@ public final class ARelacionalExpLogica extends PExpLogica
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._somaRelacional_ == oldChild)
+        if(this._expLogicaOriginal_ == oldChild)
         {
-            setSomaRelacional((PSomaRelacional) newChild);
-            return;
-        }
-
-        if(this._somaExp_ == oldChild)
-        {
-            setSomaExp((PSomaExp) newChild);
+            setExpLogicaOriginal((PExpLogicaOriginal) newChild);
             return;
         }
 

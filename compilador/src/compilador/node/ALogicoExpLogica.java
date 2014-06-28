@@ -7,8 +7,8 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class ALogicoExpLogica extends PExpLogica
 {
-    private POpLogico _opLogico_;
-    private PExpLogica _expLogica_;
+    private PExpLogicaOriginal _expLogicaOriginal_;
+    private PLogicoEouxor _logicoEouxor_;
 
     public ALogicoExpLogica()
     {
@@ -16,13 +16,13 @@ public final class ALogicoExpLogica extends PExpLogica
     }
 
     public ALogicoExpLogica(
-        @SuppressWarnings("hiding") POpLogico _opLogico_,
-        @SuppressWarnings("hiding") PExpLogica _expLogica_)
+        @SuppressWarnings("hiding") PExpLogicaOriginal _expLogicaOriginal_,
+        @SuppressWarnings("hiding") PLogicoEouxor _logicoEouxor_)
     {
         // Constructor
-        setOpLogico(_opLogico_);
+        setExpLogicaOriginal(_expLogicaOriginal_);
 
-        setExpLogica(_expLogica_);
+        setLogicoEouxor(_logicoEouxor_);
 
     }
 
@@ -30,8 +30,8 @@ public final class ALogicoExpLogica extends PExpLogica
     public Object clone()
     {
         return new ALogicoExpLogica(
-            cloneNode(this._opLogico_),
-            cloneNode(this._expLogica_));
+            cloneNode(this._expLogicaOriginal_),
+            cloneNode(this._logicoEouxor_));
     }
 
     @Override
@@ -40,16 +40,16 @@ public final class ALogicoExpLogica extends PExpLogica
         ((Analysis) sw).caseALogicoExpLogica(this);
     }
 
-    public POpLogico getOpLogico()
+    public PExpLogicaOriginal getExpLogicaOriginal()
     {
-        return this._opLogico_;
+        return this._expLogicaOriginal_;
     }
 
-    public void setOpLogico(POpLogico node)
+    public void setExpLogicaOriginal(PExpLogicaOriginal node)
     {
-        if(this._opLogico_ != null)
+        if(this._expLogicaOriginal_ != null)
         {
-            this._opLogico_.parent(null);
+            this._expLogicaOriginal_.parent(null);
         }
 
         if(node != null)
@@ -62,19 +62,19 @@ public final class ALogicoExpLogica extends PExpLogica
             node.parent(this);
         }
 
-        this._opLogico_ = node;
+        this._expLogicaOriginal_ = node;
     }
 
-    public PExpLogica getExpLogica()
+    public PLogicoEouxor getLogicoEouxor()
     {
-        return this._expLogica_;
+        return this._logicoEouxor_;
     }
 
-    public void setExpLogica(PExpLogica node)
+    public void setLogicoEouxor(PLogicoEouxor node)
     {
-        if(this._expLogica_ != null)
+        if(this._logicoEouxor_ != null)
         {
-            this._expLogica_.parent(null);
+            this._logicoEouxor_.parent(null);
         }
 
         if(node != null)
@@ -87,30 +87,30 @@ public final class ALogicoExpLogica extends PExpLogica
             node.parent(this);
         }
 
-        this._expLogica_ = node;
+        this._logicoEouxor_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._opLogico_)
-            + toString(this._expLogica_);
+            + toString(this._expLogicaOriginal_)
+            + toString(this._logicoEouxor_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._opLogico_ == child)
+        if(this._expLogicaOriginal_ == child)
         {
-            this._opLogico_ = null;
+            this._expLogicaOriginal_ = null;
             return;
         }
 
-        if(this._expLogica_ == child)
+        if(this._logicoEouxor_ == child)
         {
-            this._expLogica_ = null;
+            this._logicoEouxor_ = null;
             return;
         }
 
@@ -121,15 +121,15 @@ public final class ALogicoExpLogica extends PExpLogica
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._opLogico_ == oldChild)
+        if(this._expLogicaOriginal_ == oldChild)
         {
-            setOpLogico((POpLogico) newChild);
+            setExpLogicaOriginal((PExpLogicaOriginal) newChild);
             return;
         }
 
-        if(this._expLogica_ == oldChild)
+        if(this._logicoEouxor_ == oldChild)
         {
-            setExpLogica((PExpLogica) newChild);
+            setLogicoEouxor((PLogicoEouxor) newChild);
             return;
         }
 

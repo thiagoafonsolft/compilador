@@ -447,6 +447,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAListaExpLogicaLista(AListaExpLogicaLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpLogicaExpLogicaLista(AExpLogicaExpLogicaLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseARelacionalExpLogica(ARelacionalExpLogica node)
     {
         defaultCase(node);
@@ -460,6 +472,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseALogicoExpLogica(ALogicoExpLogica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpLogicaOriginal(AExpLogicaOriginal node)
     {
         defaultCase(node);
     }
@@ -484,6 +502,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseADivisaoMult(ADivisaoMult node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseALogicoEouxor(ALogicoEouxor node)
     {
         defaultCase(node);
     }

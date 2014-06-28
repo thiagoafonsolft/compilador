@@ -74,13 +74,17 @@ public interface Analysis extends Switch
     void caseAListaExpViruglaLista(AListaExpViruglaLista node);
     void caseAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node);
     void caseAExpVirgula(AExpVirgula node);
+    void caseAListaExpLogicaLista(AListaExpLogicaLista node);
+    void caseAExpLogicaExpLogicaLista(AExpLogicaExpLogicaLista node);
     void caseARelacionalExpLogica(ARelacionalExpLogica node);
     void caseANegacaoExpLogica(ANegacaoExpLogica node);
     void caseALogicoExpLogica(ALogicoExpLogica node);
+    void caseAExpLogicaOriginal(AExpLogicaOriginal node);
     void caseAAdicaoSoma(AAdicaoSoma node);
     void caseASubtracaoSoma(ASubtracaoSoma node);
     void caseAMultiplicacaoMult(AMultiplicacaoMult node);
     void caseADivisaoMult(ADivisaoMult node);
+    void caseALogicoEouxor(ALogicoEouxor node);
     void caseAEOpLogico(AEOpLogico node);
     void caseAOuOpLogico(AOuOpLogico node);
     void caseAXorOpLogico(AXorOpLogico node);
