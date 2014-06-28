@@ -50,7 +50,8 @@ public class Lexico extends Lexer {
             } else {
                 if (peek().getLine() > linha) {
                     linha = peek().getLine();
-                    teste = teste + "\n";
+                    if (!teste.isEmpty())
+                        teste = teste + "\n";
                 }
                 teste = teste + " " + next().getClass().getSimpleName();
             }

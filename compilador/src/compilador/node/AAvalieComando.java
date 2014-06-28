@@ -12,7 +12,7 @@ public final class AAvalieComando extends PComando
     private PExp _exp_;
     private TFechaparentese _fechaparentese_;
     private PCasoValorOp _casoValorOp_;
-    private PSenaoOpcional _senaoOpcional_;
+    private PSenaoDoispontosOp _senaoDoispontosOp_;
     private TFimavalie _fimavalie_;
     private TPontovirgula _pontovirgula_;
 
@@ -27,7 +27,7 @@ public final class AAvalieComando extends PComando
         @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") PCasoValorOp _casoValorOp_,
-        @SuppressWarnings("hiding") PSenaoOpcional _senaoOpcional_,
+        @SuppressWarnings("hiding") PSenaoDoispontosOp _senaoDoispontosOp_,
         @SuppressWarnings("hiding") TFimavalie _fimavalie_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
     {
@@ -42,7 +42,7 @@ public final class AAvalieComando extends PComando
 
         setCasoValorOp(_casoValorOp_);
 
-        setSenaoOpcional(_senaoOpcional_);
+        setSenaoDoispontosOp(_senaoDoispontosOp_);
 
         setFimavalie(_fimavalie_);
 
@@ -59,7 +59,7 @@ public final class AAvalieComando extends PComando
             cloneNode(this._exp_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._casoValorOp_),
-            cloneNode(this._senaoOpcional_),
+            cloneNode(this._senaoDoispontosOp_),
             cloneNode(this._fimavalie_),
             cloneNode(this._pontovirgula_));
     }
@@ -195,16 +195,16 @@ public final class AAvalieComando extends PComando
         this._casoValorOp_ = node;
     }
 
-    public PSenaoOpcional getSenaoOpcional()
+    public PSenaoDoispontosOp getSenaoDoispontosOp()
     {
-        return this._senaoOpcional_;
+        return this._senaoDoispontosOp_;
     }
 
-    public void setSenaoOpcional(PSenaoOpcional node)
+    public void setSenaoDoispontosOp(PSenaoDoispontosOp node)
     {
-        if(this._senaoOpcional_ != null)
+        if(this._senaoDoispontosOp_ != null)
         {
-            this._senaoOpcional_.parent(null);
+            this._senaoDoispontosOp_.parent(null);
         }
 
         if(node != null)
@@ -217,7 +217,7 @@ public final class AAvalieComando extends PComando
             node.parent(this);
         }
 
-        this._senaoOpcional_ = node;
+        this._senaoDoispontosOp_ = node;
     }
 
     public TFimavalie getFimavalie()
@@ -279,7 +279,7 @@ public final class AAvalieComando extends PComando
             + toString(this._exp_)
             + toString(this._fechaparentese_)
             + toString(this._casoValorOp_)
-            + toString(this._senaoOpcional_)
+            + toString(this._senaoDoispontosOp_)
             + toString(this._fimavalie_)
             + toString(this._pontovirgula_);
     }
@@ -318,9 +318,9 @@ public final class AAvalieComando extends PComando
             return;
         }
 
-        if(this._senaoOpcional_ == child)
+        if(this._senaoDoispontosOp_ == child)
         {
-            this._senaoOpcional_ = null;
+            this._senaoDoispontosOp_ = null;
             return;
         }
 
@@ -373,9 +373,9 @@ public final class AAvalieComando extends PComando
             return;
         }
 
-        if(this._senaoOpcional_ == oldChild)
+        if(this._senaoDoispontosOp_ == oldChild)
         {
-            setSenaoOpcional((PSenaoOpcional) newChild);
+            setSenaoDoispontosOp((PSenaoDoispontosOp) newChild);
             return;
         }
 

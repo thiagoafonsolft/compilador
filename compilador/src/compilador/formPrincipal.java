@@ -101,7 +101,9 @@ public class formPrincipal extends javax.swing.JFrame {
 
         txtRetorno.setEditable(false);
         txtRetorno.setColumns(20);
+        txtRetorno.setLineWrap(true);
         txtRetorno.setRows(5);
+        txtRetorno.setWrapStyleWord(true);
         jScrollPane2.setViewportView(txtRetorno);
 
         btnAnalisarLexico.setText("Analisar Léxico");

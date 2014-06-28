@@ -10,8 +10,7 @@ public final class AParaFim extends PParaFim
     private TAte _ate_;
     private TNInteiro _nInteiro_;
     private TFaca _faca_;
-    private PComandoPvirgulaOp _comandoPvirgulaOp_;
-    private PComandoPvirgula _comandoPvirgula_;
+    private PComandoOpLista _comandoOpLista_;
     private TFimpara _fimpara_;
     private TPontovirgula _pontovirgula_;
 
@@ -24,8 +23,7 @@ public final class AParaFim extends PParaFim
         @SuppressWarnings("hiding") TAte _ate_,
         @SuppressWarnings("hiding") TNInteiro _nInteiro_,
         @SuppressWarnings("hiding") TFaca _faca_,
-        @SuppressWarnings("hiding") PComandoPvirgulaOp _comandoPvirgulaOp_,
-        @SuppressWarnings("hiding") PComandoPvirgula _comandoPvirgula_,
+        @SuppressWarnings("hiding") PComandoOpLista _comandoOpLista_,
         @SuppressWarnings("hiding") TFimpara _fimpara_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
     {
@@ -36,9 +34,7 @@ public final class AParaFim extends PParaFim
 
         setFaca(_faca_);
 
-        setComandoPvirgulaOp(_comandoPvirgulaOp_);
-
-        setComandoPvirgula(_comandoPvirgula_);
+        setComandoOpLista(_comandoOpLista_);
 
         setFimpara(_fimpara_);
 
@@ -53,8 +49,7 @@ public final class AParaFim extends PParaFim
             cloneNode(this._ate_),
             cloneNode(this._nInteiro_),
             cloneNode(this._faca_),
-            cloneNode(this._comandoPvirgulaOp_),
-            cloneNode(this._comandoPvirgula_),
+            cloneNode(this._comandoOpLista_),
             cloneNode(this._fimpara_),
             cloneNode(this._pontovirgula_));
     }
@@ -140,16 +135,16 @@ public final class AParaFim extends PParaFim
         this._faca_ = node;
     }
 
-    public PComandoPvirgulaOp getComandoPvirgulaOp()
+    public PComandoOpLista getComandoOpLista()
     {
-        return this._comandoPvirgulaOp_;
+        return this._comandoOpLista_;
     }
 
-    public void setComandoPvirgulaOp(PComandoPvirgulaOp node)
+    public void setComandoOpLista(PComandoOpLista node)
     {
-        if(this._comandoPvirgulaOp_ != null)
+        if(this._comandoOpLista_ != null)
         {
-            this._comandoPvirgulaOp_.parent(null);
+            this._comandoOpLista_.parent(null);
         }
 
         if(node != null)
@@ -162,32 +157,7 @@ public final class AParaFim extends PParaFim
             node.parent(this);
         }
 
-        this._comandoPvirgulaOp_ = node;
-    }
-
-    public PComandoPvirgula getComandoPvirgula()
-    {
-        return this._comandoPvirgula_;
-    }
-
-    public void setComandoPvirgula(PComandoPvirgula node)
-    {
-        if(this._comandoPvirgula_ != null)
-        {
-            this._comandoPvirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandoPvirgula_ = node;
+        this._comandoOpLista_ = node;
     }
 
     public TFimpara getFimpara()
@@ -247,8 +217,7 @@ public final class AParaFim extends PParaFim
             + toString(this._ate_)
             + toString(this._nInteiro_)
             + toString(this._faca_)
-            + toString(this._comandoPvirgulaOp_)
-            + toString(this._comandoPvirgula_)
+            + toString(this._comandoOpLista_)
             + toString(this._fimpara_)
             + toString(this._pontovirgula_);
     }
@@ -275,15 +244,9 @@ public final class AParaFim extends PParaFim
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == child)
+        if(this._comandoOpLista_ == child)
         {
-            this._comandoPvirgulaOp_ = null;
-            return;
-        }
-
-        if(this._comandoPvirgula_ == child)
-        {
-            this._comandoPvirgula_ = null;
+            this._comandoOpLista_ = null;
             return;
         }
 
@@ -324,15 +287,9 @@ public final class AParaFim extends PParaFim
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == oldChild)
+        if(this._comandoOpLista_ == oldChild)
         {
-            setComandoPvirgulaOp((PComandoPvirgulaOp) newChild);
-            return;
-        }
-
-        if(this._comandoPvirgula_ == oldChild)
-        {
-            setComandoPvirgula((PComandoPvirgula) newChild);
+            setComandoOpLista((PComandoOpLista) newChild);
             return;
         }
 

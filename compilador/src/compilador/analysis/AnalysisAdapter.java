@@ -177,13 +177,31 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAVirgulaVarVirgulaOp(AVirgulaVarVirgulaOp node)
+    public void caseAListaVarVirgulaOp(AListaVarVirgulaOp node)
     {
         defaultCase(node);
     }
 
     @Override
     public void caseAEmptyVarVirgulaOp(AEmptyVarVirgulaOp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVirgulaListaVarVirgulaLista(AVirgulaListaVarVirgulaLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarVirgulaVarVirgulaLista(AVarVirgulaVarVirgulaLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarVirgula(AVarVirgula node)
     {
         defaultCase(node);
     }
@@ -261,37 +279,49 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAComandoPvirgula(AComandoPvirgula node)
+    public void caseAListaComandoOpLista(AListaComandoOpLista node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAComandoComandoPvirgulaOp(AComandoComandoPvirgulaOp node)
+    public void caseAComandoComandoOpLista(AComandoComandoOpLista node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAEmptyComandoPvirgulaOp(AEmptyComandoPvirgulaOp node)
+    public void caseASenaoSenaoOp(ASenaoSenaoOp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseASenaoSenaoOpcional(ASenaoSenaoOpcional node)
+    public void caseAEmptySenaoOp(AEmptySenaoOp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseASenaodoispontosSenaoOpcional(ASenaodoispontosSenaoOpcional node)
+    public void caseASenaoSenaoDoispontosOp(ASenaoSenaoDoispontosOp node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAEmptySenaoOpcional(AEmptySenaoOpcional node)
+    public void caseAEmptySenaoDoispontosOp(AEmptySenaoDoispontosOp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASenaoComando(ASenaoComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASenaoDoispontos(ASenaoDoispontos node)
     {
         defaultCase(node);
     }
@@ -304,6 +334,24 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAEmptyCasoValorOp(AEmptyCasoValorOp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACasoValorListaCasoValorLista(ACasoValorListaCasoValorLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACasoValorCasoValorLista(ACasoValorCasoValorLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACasoValor(ACasoValor node)
     {
         defaultCase(node);
     }
@@ -376,6 +424,24 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAEmptyExpVirgulaOp(AEmptyExpVirgulaOp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAListaExpViruglaLista(AListaExpViruglaLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpVirgula(AExpVirgula node)
     {
         defaultCase(node);
     }

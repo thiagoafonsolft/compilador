@@ -8,8 +8,7 @@ import compilador.analysis.*;
 public final class ARepitaComando extends PComando
 {
     private TRepita _repita_;
-    private PComandoPvirgulaOp _comandoPvirgulaOp_;
-    private PComandoPvirgula _comandoPvirgula_;
+    private PComandoOpLista _comandoOpLista_;
     private TAte _ate_;
     private TAbreparentese _abreparentese_;
     private PExpLogica _expLogica_;
@@ -23,8 +22,7 @@ public final class ARepitaComando extends PComando
 
     public ARepitaComando(
         @SuppressWarnings("hiding") TRepita _repita_,
-        @SuppressWarnings("hiding") PComandoPvirgulaOp _comandoPvirgulaOp_,
-        @SuppressWarnings("hiding") PComandoPvirgula _comandoPvirgula_,
+        @SuppressWarnings("hiding") PComandoOpLista _comandoOpLista_,
         @SuppressWarnings("hiding") TAte _ate_,
         @SuppressWarnings("hiding") TAbreparentese _abreparentese_,
         @SuppressWarnings("hiding") PExpLogica _expLogica_,
@@ -34,9 +32,7 @@ public final class ARepitaComando extends PComando
         // Constructor
         setRepita(_repita_);
 
-        setComandoPvirgulaOp(_comandoPvirgulaOp_);
-
-        setComandoPvirgula(_comandoPvirgula_);
+        setComandoOpLista(_comandoOpLista_);
 
         setAte(_ate_);
 
@@ -55,8 +51,7 @@ public final class ARepitaComando extends PComando
     {
         return new ARepitaComando(
             cloneNode(this._repita_),
-            cloneNode(this._comandoPvirgulaOp_),
-            cloneNode(this._comandoPvirgula_),
+            cloneNode(this._comandoOpLista_),
             cloneNode(this._ate_),
             cloneNode(this._abreparentese_),
             cloneNode(this._expLogica_),
@@ -95,16 +90,16 @@ public final class ARepitaComando extends PComando
         this._repita_ = node;
     }
 
-    public PComandoPvirgulaOp getComandoPvirgulaOp()
+    public PComandoOpLista getComandoOpLista()
     {
-        return this._comandoPvirgulaOp_;
+        return this._comandoOpLista_;
     }
 
-    public void setComandoPvirgulaOp(PComandoPvirgulaOp node)
+    public void setComandoOpLista(PComandoOpLista node)
     {
-        if(this._comandoPvirgulaOp_ != null)
+        if(this._comandoOpLista_ != null)
         {
-            this._comandoPvirgulaOp_.parent(null);
+            this._comandoOpLista_.parent(null);
         }
 
         if(node != null)
@@ -117,32 +112,7 @@ public final class ARepitaComando extends PComando
             node.parent(this);
         }
 
-        this._comandoPvirgulaOp_ = node;
-    }
-
-    public PComandoPvirgula getComandoPvirgula()
-    {
-        return this._comandoPvirgula_;
-    }
-
-    public void setComandoPvirgula(PComandoPvirgula node)
-    {
-        if(this._comandoPvirgula_ != null)
-        {
-            this._comandoPvirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandoPvirgula_ = node;
+        this._comandoOpLista_ = node;
     }
 
     public TAte getAte()
@@ -275,8 +245,7 @@ public final class ARepitaComando extends PComando
     {
         return ""
             + toString(this._repita_)
-            + toString(this._comandoPvirgulaOp_)
-            + toString(this._comandoPvirgula_)
+            + toString(this._comandoOpLista_)
             + toString(this._ate_)
             + toString(this._abreparentese_)
             + toString(this._expLogica_)
@@ -294,15 +263,9 @@ public final class ARepitaComando extends PComando
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == child)
+        if(this._comandoOpLista_ == child)
         {
-            this._comandoPvirgulaOp_ = null;
-            return;
-        }
-
-        if(this._comandoPvirgula_ == child)
-        {
-            this._comandoPvirgula_ = null;
+            this._comandoOpLista_ = null;
             return;
         }
 
@@ -349,15 +312,9 @@ public final class ARepitaComando extends PComando
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == oldChild)
+        if(this._comandoOpLista_ == oldChild)
         {
-            setComandoPvirgulaOp((PComandoPvirgulaOp) newChild);
-            return;
-        }
-
-        if(this._comandoPvirgula_ == oldChild)
-        {
-            setComandoPvirgula((PComandoPvirgula) newChild);
+            setComandoOpLista((PComandoOpLista) newChild);
             return;
         }
 

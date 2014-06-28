@@ -20,7 +20,7 @@ public class Sintatico extends Parser {
     }
 
     public String Analisar() throws LexerException, LexerException, IOException, ParserException {
-        Start tree = parse();        
+        Start tree = parse();
         System.out.println("Arvore Formada!!\n" + tree.toString());        
         return "Arvore Formada!!\n" + tree.toString();
     }

@@ -12,9 +12,8 @@ public final class ASeComando extends PComando
     private PExpLogica _expLogica_;
     private TFechaparentese _fechaparentese_;
     private TEntao _entao_;
-    private PComandoPvirgulaOp _comandoPvirgulaOp_;
-    private PComandoPvirgula _comandoPvirgula_;
-    private PSenaoOpcional _senaoOpcional_;
+    private PComandoOpLista _comandoOpLista_;
+    private PSenaoOp _senaoOp_;
     private TFimse _fimse_;
     private TPontovirgula _pontovirgula_;
 
@@ -29,9 +28,8 @@ public final class ASeComando extends PComando
         @SuppressWarnings("hiding") PExpLogica _expLogica_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") TEntao _entao_,
-        @SuppressWarnings("hiding") PComandoPvirgulaOp _comandoPvirgulaOp_,
-        @SuppressWarnings("hiding") PComandoPvirgula _comandoPvirgula_,
-        @SuppressWarnings("hiding") PSenaoOpcional _senaoOpcional_,
+        @SuppressWarnings("hiding") PComandoOpLista _comandoOpLista_,
+        @SuppressWarnings("hiding") PSenaoOp _senaoOp_,
         @SuppressWarnings("hiding") TFimse _fimse_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
     {
@@ -46,11 +44,9 @@ public final class ASeComando extends PComando
 
         setEntao(_entao_);
 
-        setComandoPvirgulaOp(_comandoPvirgulaOp_);
+        setComandoOpLista(_comandoOpLista_);
 
-        setComandoPvirgula(_comandoPvirgula_);
-
-        setSenaoOpcional(_senaoOpcional_);
+        setSenaoOp(_senaoOp_);
 
         setFimse(_fimse_);
 
@@ -67,9 +63,8 @@ public final class ASeComando extends PComando
             cloneNode(this._expLogica_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._entao_),
-            cloneNode(this._comandoPvirgulaOp_),
-            cloneNode(this._comandoPvirgula_),
-            cloneNode(this._senaoOpcional_),
+            cloneNode(this._comandoOpLista_),
+            cloneNode(this._senaoOp_),
             cloneNode(this._fimse_),
             cloneNode(this._pontovirgula_));
     }
@@ -205,16 +200,16 @@ public final class ASeComando extends PComando
         this._entao_ = node;
     }
 
-    public PComandoPvirgulaOp getComandoPvirgulaOp()
+    public PComandoOpLista getComandoOpLista()
     {
-        return this._comandoPvirgulaOp_;
+        return this._comandoOpLista_;
     }
 
-    public void setComandoPvirgulaOp(PComandoPvirgulaOp node)
+    public void setComandoOpLista(PComandoOpLista node)
     {
-        if(this._comandoPvirgulaOp_ != null)
+        if(this._comandoOpLista_ != null)
         {
-            this._comandoPvirgulaOp_.parent(null);
+            this._comandoOpLista_.parent(null);
         }
 
         if(node != null)
@@ -227,19 +222,19 @@ public final class ASeComando extends PComando
             node.parent(this);
         }
 
-        this._comandoPvirgulaOp_ = node;
+        this._comandoOpLista_ = node;
     }
 
-    public PComandoPvirgula getComandoPvirgula()
+    public PSenaoOp getSenaoOp()
     {
-        return this._comandoPvirgula_;
+        return this._senaoOp_;
     }
 
-    public void setComandoPvirgula(PComandoPvirgula node)
+    public void setSenaoOp(PSenaoOp node)
     {
-        if(this._comandoPvirgula_ != null)
+        if(this._senaoOp_ != null)
         {
-            this._comandoPvirgula_.parent(null);
+            this._senaoOp_.parent(null);
         }
 
         if(node != null)
@@ -252,32 +247,7 @@ public final class ASeComando extends PComando
             node.parent(this);
         }
 
-        this._comandoPvirgula_ = node;
-    }
-
-    public PSenaoOpcional getSenaoOpcional()
-    {
-        return this._senaoOpcional_;
-    }
-
-    public void setSenaoOpcional(PSenaoOpcional node)
-    {
-        if(this._senaoOpcional_ != null)
-        {
-            this._senaoOpcional_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._senaoOpcional_ = node;
+        this._senaoOp_ = node;
     }
 
     public TFimse getFimse()
@@ -339,9 +309,8 @@ public final class ASeComando extends PComando
             + toString(this._expLogica_)
             + toString(this._fechaparentese_)
             + toString(this._entao_)
-            + toString(this._comandoPvirgulaOp_)
-            + toString(this._comandoPvirgula_)
-            + toString(this._senaoOpcional_)
+            + toString(this._comandoOpLista_)
+            + toString(this._senaoOp_)
             + toString(this._fimse_)
             + toString(this._pontovirgula_);
     }
@@ -380,21 +349,15 @@ public final class ASeComando extends PComando
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == child)
+        if(this._comandoOpLista_ == child)
         {
-            this._comandoPvirgulaOp_ = null;
+            this._comandoOpLista_ = null;
             return;
         }
 
-        if(this._comandoPvirgula_ == child)
+        if(this._senaoOp_ == child)
         {
-            this._comandoPvirgula_ = null;
-            return;
-        }
-
-        if(this._senaoOpcional_ == child)
-        {
-            this._senaoOpcional_ = null;
+            this._senaoOp_ = null;
             return;
         }
 
@@ -447,21 +410,15 @@ public final class ASeComando extends PComando
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == oldChild)
+        if(this._comandoOpLista_ == oldChild)
         {
-            setComandoPvirgulaOp((PComandoPvirgulaOp) newChild);
+            setComandoOpLista((PComandoOpLista) newChild);
             return;
         }
 
-        if(this._comandoPvirgula_ == oldChild)
+        if(this._senaoOp_ == oldChild)
         {
-            setComandoPvirgula((PComandoPvirgula) newChild);
-            return;
-        }
-
-        if(this._senaoOpcional_ == oldChild)
-        {
-            setSenaoOpcional((PSenaoOpcional) newChild);
+            setSenaoOp((PSenaoOp) newChild);
             return;
         }
 

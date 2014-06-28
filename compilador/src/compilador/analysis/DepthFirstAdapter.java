@@ -453,29 +453,25 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAVetorVar(node);
     }
 
-    public void inAVirgulaVarVirgulaOp(AVirgulaVarVirgulaOp node)
+    public void inAListaVarVirgulaOp(AListaVarVirgulaOp node)
     {
         defaultIn(node);
     }
 
-    public void outAVirgulaVarVirgulaOp(AVirgulaVarVirgulaOp node)
+    public void outAListaVarVirgulaOp(AListaVarVirgulaOp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAVirgulaVarVirgulaOp(AVirgulaVarVirgulaOp node)
+    public void caseAListaVarVirgulaOp(AListaVarVirgulaOp node)
     {
-        inAVirgulaVarVirgulaOp(node);
-        if(node.getVar() != null)
+        inAListaVarVirgulaOp(node);
+        if(node.getVarVirgulaLista() != null)
         {
-            node.getVar().apply(this);
+            node.getVarVirgulaLista().apply(this);
         }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
-        }
-        outAVirgulaVarVirgulaOp(node);
+        outAListaVarVirgulaOp(node);
     }
 
     public void inAEmptyVarVirgulaOp(AEmptyVarVirgulaOp node)
@@ -493,6 +489,77 @@ public class DepthFirstAdapter extends AnalysisAdapter
     {
         inAEmptyVarVirgulaOp(node);
         outAEmptyVarVirgulaOp(node);
+    }
+
+    public void inAVirgulaListaVarVirgulaLista(AVirgulaListaVarVirgulaLista node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVirgulaListaVarVirgulaLista(AVirgulaListaVarVirgulaLista node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVirgulaListaVarVirgulaLista(AVirgulaListaVarVirgulaLista node)
+    {
+        inAVirgulaListaVarVirgulaLista(node);
+        if(node.getVarVirgulaLista() != null)
+        {
+            node.getVarVirgulaLista().apply(this);
+        }
+        if(node.getVarVirgula() != null)
+        {
+            node.getVarVirgula().apply(this);
+        }
+        outAVirgulaListaVarVirgulaLista(node);
+    }
+
+    public void inAVarVirgulaVarVirgulaLista(AVarVirgulaVarVirgulaLista node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVarVirgulaVarVirgulaLista(AVarVirgulaVarVirgulaLista node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVarVirgulaVarVirgulaLista(AVarVirgulaVarVirgulaLista node)
+    {
+        inAVarVirgulaVarVirgulaLista(node);
+        if(node.getVarVirgula() != null)
+        {
+            node.getVarVirgula().apply(this);
+        }
+        outAVarVirgulaVarVirgulaLista(node);
+    }
+
+    public void inAVarVirgula(AVarVirgula node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVarVirgula(AVarVirgula node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVarVirgula(AVarVirgula node)
+    {
+        inAVarVirgula(node);
+        if(node.getVar() != null)
+        {
+            node.getVar().apply(this);
+        }
+        if(node.getVirgula() != null)
+        {
+            node.getVirgula().apply(this);
+        }
+        outAVarVirgula(node);
     }
 
     public void inAStringValor(AStringValor node)
@@ -707,17 +774,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getEntao().apply(this);
         }
-        if(node.getComandoPvirgulaOp() != null)
+        if(node.getComandoOpLista() != null)
         {
-            node.getComandoPvirgulaOp().apply(this);
+            node.getComandoOpLista().apply(this);
         }
-        if(node.getComandoPvirgula() != null)
+        if(node.getSenaoOp() != null)
         {
-            node.getComandoPvirgula().apply(this);
-        }
-        if(node.getSenaoOpcional() != null)
-        {
-            node.getSenaoOpcional().apply(this);
+            node.getSenaoOp().apply(this);
         }
         if(node.getFimse() != null)
         {
@@ -764,9 +827,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getCasoValorOp().apply(this);
         }
-        if(node.getSenaoOpcional() != null)
+        if(node.getSenaoDoispontosOp() != null)
         {
-            node.getSenaoOpcional().apply(this);
+            node.getSenaoDoispontosOp().apply(this);
         }
         if(node.getFimavalie() != null)
         {
@@ -813,13 +876,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getFaca().apply(this);
         }
-        if(node.getComandoPvirgulaOp() != null)
+        if(node.getComandoOpLista() != null)
         {
-            node.getComandoPvirgulaOp().apply(this);
-        }
-        if(node.getComandoPvirgula() != null)
-        {
-            node.getComandoPvirgula().apply(this);
+            node.getComandoOpLista().apply(this);
         }
         if(node.getFimenquanto() != null)
         {
@@ -850,13 +909,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getRepita().apply(this);
         }
-        if(node.getComandoPvirgulaOp() != null)
+        if(node.getComandoOpLista() != null)
         {
-            node.getComandoPvirgulaOp().apply(this);
-        }
-        if(node.getComandoPvirgula() != null)
-        {
-            node.getComandoPvirgula().apply(this);
+            node.getComandoOpLista().apply(this);
         }
         if(node.getAte() != null)
         {
@@ -939,120 +994,167 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAPassoComando(node);
     }
 
-    public void inAComandoPvirgula(AComandoPvirgula node)
+    public void inAListaComandoOpLista(AListaComandoOpLista node)
     {
         defaultIn(node);
     }
 
-    public void outAComandoPvirgula(AComandoPvirgula node)
+    public void outAListaComandoOpLista(AListaComandoOpLista node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAComandoPvirgula(AComandoPvirgula node)
+    public void caseAListaComandoOpLista(AListaComandoOpLista node)
     {
-        inAComandoPvirgula(node);
+        inAListaComandoOpLista(node);
+        if(node.getComandoOpLista() != null)
+        {
+            node.getComandoOpLista().apply(this);
+        }
         if(node.getComando() != null)
         {
             node.getComando().apply(this);
         }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
-        }
-        outAComandoPvirgula(node);
+        outAListaComandoOpLista(node);
     }
 
-    public void inAComandoComandoPvirgulaOp(AComandoComandoPvirgulaOp node)
+    public void inAComandoComandoOpLista(AComandoComandoOpLista node)
     {
         defaultIn(node);
     }
 
-    public void outAComandoComandoPvirgulaOp(AComandoComandoPvirgulaOp node)
+    public void outAComandoComandoOpLista(AComandoComandoOpLista node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAComandoComandoPvirgulaOp(AComandoComandoPvirgulaOp node)
+    public void caseAComandoComandoOpLista(AComandoComandoOpLista node)
     {
-        inAComandoComandoPvirgulaOp(node);
+        inAComandoComandoOpLista(node);
         if(node.getComando() != null)
         {
             node.getComando().apply(this);
         }
-        if(node.getPontovirgula() != null)
+        outAComandoComandoOpLista(node);
+    }
+
+    public void inASenaoSenaoOp(ASenaoSenaoOp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASenaoSenaoOp(ASenaoSenaoOp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASenaoSenaoOp(ASenaoSenaoOp node)
+    {
+        inASenaoSenaoOp(node);
+        if(node.getSenaoComando() != null)
         {
-            node.getPontovirgula().apply(this);
+            node.getSenaoComando().apply(this);
         }
-        outAComandoComandoPvirgulaOp(node);
+        outASenaoSenaoOp(node);
     }
 
-    public void inAEmptyComandoPvirgulaOp(AEmptyComandoPvirgulaOp node)
+    public void inAEmptySenaoOp(AEmptySenaoOp node)
     {
         defaultIn(node);
     }
 
-    public void outAEmptyComandoPvirgulaOp(AEmptyComandoPvirgulaOp node)
+    public void outAEmptySenaoOp(AEmptySenaoOp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAEmptyComandoPvirgulaOp(AEmptyComandoPvirgulaOp node)
+    public void caseAEmptySenaoOp(AEmptySenaoOp node)
     {
-        inAEmptyComandoPvirgulaOp(node);
-        outAEmptyComandoPvirgulaOp(node);
+        inAEmptySenaoOp(node);
+        outAEmptySenaoOp(node);
     }
 
-    public void inASenaoSenaoOpcional(ASenaoSenaoOpcional node)
+    public void inASenaoSenaoDoispontosOp(ASenaoSenaoDoispontosOp node)
     {
         defaultIn(node);
     }
 
-    public void outASenaoSenaoOpcional(ASenaoSenaoOpcional node)
+    public void outASenaoSenaoDoispontosOp(ASenaoSenaoDoispontosOp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASenaoSenaoOpcional(ASenaoSenaoOpcional node)
+    public void caseASenaoSenaoDoispontosOp(ASenaoSenaoDoispontosOp node)
     {
-        inASenaoSenaoOpcional(node);
+        inASenaoSenaoDoispontosOp(node);
+        if(node.getSenaoDoispontos() != null)
+        {
+            node.getSenaoDoispontos().apply(this);
+        }
+        outASenaoSenaoDoispontosOp(node);
+    }
+
+    public void inAEmptySenaoDoispontosOp(AEmptySenaoDoispontosOp node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEmptySenaoDoispontosOp(AEmptySenaoDoispontosOp node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEmptySenaoDoispontosOp(AEmptySenaoDoispontosOp node)
+    {
+        inAEmptySenaoDoispontosOp(node);
+        outAEmptySenaoDoispontosOp(node);
+    }
+
+    public void inASenaoComando(ASenaoComando node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASenaoComando(ASenaoComando node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASenaoComando(ASenaoComando node)
+    {
+        inASenaoComando(node);
         if(node.getSenao() != null)
         {
             node.getSenao().apply(this);
         }
-        if(node.getComandoPvirgulaOp() != null)
+        if(node.getComandoOpLista() != null)
         {
-            node.getComandoPvirgulaOp().apply(this);
+            node.getComandoOpLista().apply(this);
         }
-        if(node.getComando() != null)
-        {
-            node.getComando().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
-        }
-        outASenaoSenaoOpcional(node);
+        outASenaoComando(node);
     }
 
-    public void inASenaodoispontosSenaoOpcional(ASenaodoispontosSenaoOpcional node)
+    public void inASenaoDoispontos(ASenaoDoispontos node)
     {
         defaultIn(node);
     }
 
-    public void outASenaodoispontosSenaoOpcional(ASenaodoispontosSenaoOpcional node)
+    public void outASenaoDoispontos(ASenaoDoispontos node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASenaodoispontosSenaoOpcional(ASenaodoispontosSenaoOpcional node)
+    public void caseASenaoDoispontos(ASenaoDoispontos node)
     {
-        inASenaodoispontosSenaoOpcional(node);
+        inASenaoDoispontos(node);
         if(node.getSenao() != null)
         {
             node.getSenao().apply(this);
@@ -1061,36 +1163,11 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getDoispontos().apply(this);
         }
-        if(node.getComandoPvirgulaOp() != null)
+        if(node.getComandoOpLista() != null)
         {
-            node.getComandoPvirgulaOp().apply(this);
+            node.getComandoOpLista().apply(this);
         }
-        if(node.getComando() != null)
-        {
-            node.getComando().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
-        }
-        outASenaodoispontosSenaoOpcional(node);
-    }
-
-    public void inAEmptySenaoOpcional(AEmptySenaoOpcional node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAEmptySenaoOpcional(AEmptySenaoOpcional node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAEmptySenaoOpcional(AEmptySenaoOpcional node)
-    {
-        inAEmptySenaoOpcional(node);
-        outAEmptySenaoOpcional(node);
+        outASenaoDoispontos(node);
     }
 
     public void inACasoCasoValorOp(ACasoCasoValorOp node)
@@ -1107,29 +1184,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseACasoCasoValorOp(ACasoCasoValorOp node)
     {
         inACasoCasoValorOp(node);
-        if(node.getCaso() != null)
+        if(node.getCasoValorLista() != null)
         {
-            node.getCaso().apply(this);
-        }
-        if(node.getValor() != null)
-        {
-            node.getValor().apply(this);
-        }
-        if(node.getDoispontos() != null)
-        {
-            node.getDoispontos().apply(this);
-        }
-        if(node.getComandoPvirgulaOp() != null)
-        {
-            node.getComandoPvirgulaOp().apply(this);
-        }
-        if(node.getComando() != null)
-        {
-            node.getComando().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
+            node.getCasoValorLista().apply(this);
         }
         outACasoCasoValorOp(node);
     }
@@ -1149,6 +1206,85 @@ public class DepthFirstAdapter extends AnalysisAdapter
     {
         inAEmptyCasoValorOp(node);
         outAEmptyCasoValorOp(node);
+    }
+
+    public void inACasoValorListaCasoValorLista(ACasoValorListaCasoValorLista node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACasoValorListaCasoValorLista(ACasoValorListaCasoValorLista node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACasoValorListaCasoValorLista(ACasoValorListaCasoValorLista node)
+    {
+        inACasoValorListaCasoValorLista(node);
+        if(node.getCasoValorLista() != null)
+        {
+            node.getCasoValorLista().apply(this);
+        }
+        if(node.getCasoValor() != null)
+        {
+            node.getCasoValor().apply(this);
+        }
+        outACasoValorListaCasoValorLista(node);
+    }
+
+    public void inACasoValorCasoValorLista(ACasoValorCasoValorLista node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACasoValorCasoValorLista(ACasoValorCasoValorLista node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACasoValorCasoValorLista(ACasoValorCasoValorLista node)
+    {
+        inACasoValorCasoValorLista(node);
+        if(node.getCasoValor() != null)
+        {
+            node.getCasoValor().apply(this);
+        }
+        outACasoValorCasoValorLista(node);
+    }
+
+    public void inACasoValor(ACasoValor node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACasoValor(ACasoValor node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACasoValor(ACasoValor node)
+    {
+        inACasoValor(node);
+        if(node.getCaso() != null)
+        {
+            node.getCaso().apply(this);
+        }
+        if(node.getValor() != null)
+        {
+            node.getValor().apply(this);
+        }
+        if(node.getDoispontos() != null)
+        {
+            node.getDoispontos().apply(this);
+        }
+        if(node.getComandoOpLista() != null)
+        {
+            node.getComandoOpLista().apply(this);
+        }
+        outACasoValor(node);
     }
 
     public void inAParaInicio(AParaInicio node)
@@ -1210,13 +1346,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getFaca().apply(this);
         }
-        if(node.getComandoPvirgulaOp() != null)
+        if(node.getComandoOpLista() != null)
         {
-            node.getComandoPvirgulaOp().apply(this);
-        }
-        if(node.getComandoPvirgula() != null)
-        {
-            node.getComandoPvirgula().apply(this);
+            node.getComandoOpLista().apply(this);
         }
         if(node.getFimpara() != null)
         {
@@ -1435,13 +1567,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVirgulaExpVirgulaOp(AVirgulaExpVirgulaOp node)
     {
         inAVirgulaExpVirgulaOp(node);
-        if(node.getExp() != null)
+        if(node.getExpViruglaLista() != null)
         {
-            node.getExp().apply(this);
-        }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
+            node.getExpViruglaLista().apply(this);
         }
         outAVirgulaExpVirgulaOp(node);
     }
@@ -1461,6 +1589,77 @@ public class DepthFirstAdapter extends AnalysisAdapter
     {
         inAEmptyExpVirgulaOp(node);
         outAEmptyExpVirgulaOp(node);
+    }
+
+    public void inAListaExpViruglaLista(AListaExpViruglaLista node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAListaExpViruglaLista(AListaExpViruglaLista node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAListaExpViruglaLista(AListaExpViruglaLista node)
+    {
+        inAListaExpViruglaLista(node);
+        if(node.getExpViruglaLista() != null)
+        {
+            node.getExpViruglaLista().apply(this);
+        }
+        if(node.getExpVirgula() != null)
+        {
+            node.getExpVirgula().apply(this);
+        }
+        outAListaExpViruglaLista(node);
+    }
+
+    public void inAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node)
+    {
+        inAExpVirgulaExpViruglaLista(node);
+        if(node.getExpVirgula() != null)
+        {
+            node.getExpVirgula().apply(this);
+        }
+        outAExpVirgulaExpViruglaLista(node);
+    }
+
+    public void inAExpVirgula(AExpVirgula node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExpVirgula(AExpVirgula node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAExpVirgula(AExpVirgula node)
+    {
+        inAExpVirgula(node);
+        if(node.getExp() != null)
+        {
+            node.getExp().apply(this);
+        }
+        if(node.getVirgula() != null)
+        {
+            node.getVirgula().apply(this);
+        }
+        outAExpVirgula(node);
     }
 
     public void inARelacionalExpLogica(ARelacionalExpLogica node)

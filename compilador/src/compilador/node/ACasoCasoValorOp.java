@@ -7,12 +7,7 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class ACasoCasoValorOp extends PCasoValorOp
 {
-    private TCaso _caso_;
-    private PValor _valor_;
-    private TDoispontos _doispontos_;
-    private PComandoPvirgulaOp _comandoPvirgulaOp_;
-    private PComando _comando_;
-    private TPontovirgula _pontovirgula_;
+    private PCasoValorLista _casoValorLista_;
 
     public ACasoCasoValorOp()
     {
@@ -20,25 +15,10 @@ public final class ACasoCasoValorOp extends PCasoValorOp
     }
 
     public ACasoCasoValorOp(
-        @SuppressWarnings("hiding") TCaso _caso_,
-        @SuppressWarnings("hiding") PValor _valor_,
-        @SuppressWarnings("hiding") TDoispontos _doispontos_,
-        @SuppressWarnings("hiding") PComandoPvirgulaOp _comandoPvirgulaOp_,
-        @SuppressWarnings("hiding") PComando _comando_,
-        @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
+        @SuppressWarnings("hiding") PCasoValorLista _casoValorLista_)
     {
         // Constructor
-        setCaso(_caso_);
-
-        setValor(_valor_);
-
-        setDoispontos(_doispontos_);
-
-        setComandoPvirgulaOp(_comandoPvirgulaOp_);
-
-        setComando(_comando_);
-
-        setPontovirgula(_pontovirgula_);
+        setCasoValorLista(_casoValorLista_);
 
     }
 
@@ -46,12 +26,7 @@ public final class ACasoCasoValorOp extends PCasoValorOp
     public Object clone()
     {
         return new ACasoCasoValorOp(
-            cloneNode(this._caso_),
-            cloneNode(this._valor_),
-            cloneNode(this._doispontos_),
-            cloneNode(this._comandoPvirgulaOp_),
-            cloneNode(this._comando_),
-            cloneNode(this._pontovirgula_));
+            cloneNode(this._casoValorLista_));
     }
 
     @Override
@@ -60,16 +35,16 @@ public final class ACasoCasoValorOp extends PCasoValorOp
         ((Analysis) sw).caseACasoCasoValorOp(this);
     }
 
-    public TCaso getCaso()
+    public PCasoValorLista getCasoValorLista()
     {
-        return this._caso_;
+        return this._casoValorLista_;
     }
 
-    public void setCaso(TCaso node)
+    public void setCasoValorLista(PCasoValorLista node)
     {
-        if(this._caso_ != null)
+        if(this._casoValorLista_ != null)
         {
-            this._caso_.parent(null);
+            this._casoValorLista_.parent(null);
         }
 
         if(node != null)
@@ -82,183 +57,23 @@ public final class ACasoCasoValorOp extends PCasoValorOp
             node.parent(this);
         }
 
-        this._caso_ = node;
-    }
-
-    public PValor getValor()
-    {
-        return this._valor_;
-    }
-
-    public void setValor(PValor node)
-    {
-        if(this._valor_ != null)
-        {
-            this._valor_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._valor_ = node;
-    }
-
-    public TDoispontos getDoispontos()
-    {
-        return this._doispontos_;
-    }
-
-    public void setDoispontos(TDoispontos node)
-    {
-        if(this._doispontos_ != null)
-        {
-            this._doispontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doispontos_ = node;
-    }
-
-    public PComandoPvirgulaOp getComandoPvirgulaOp()
-    {
-        return this._comandoPvirgulaOp_;
-    }
-
-    public void setComandoPvirgulaOp(PComandoPvirgulaOp node)
-    {
-        if(this._comandoPvirgulaOp_ != null)
-        {
-            this._comandoPvirgulaOp_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandoPvirgulaOp_ = node;
-    }
-
-    public PComando getComando()
-    {
-        return this._comando_;
-    }
-
-    public void setComando(PComando node)
-    {
-        if(this._comando_ != null)
-        {
-            this._comando_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comando_ = node;
-    }
-
-    public TPontovirgula getPontovirgula()
-    {
-        return this._pontovirgula_;
-    }
-
-    public void setPontovirgula(TPontovirgula node)
-    {
-        if(this._pontovirgula_ != null)
-        {
-            this._pontovirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontovirgula_ = node;
+        this._casoValorLista_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._caso_)
-            + toString(this._valor_)
-            + toString(this._doispontos_)
-            + toString(this._comandoPvirgulaOp_)
-            + toString(this._comando_)
-            + toString(this._pontovirgula_);
+            + toString(this._casoValorLista_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._caso_ == child)
+        if(this._casoValorLista_ == child)
         {
-            this._caso_ = null;
-            return;
-        }
-
-        if(this._valor_ == child)
-        {
-            this._valor_ = null;
-            return;
-        }
-
-        if(this._doispontos_ == child)
-        {
-            this._doispontos_ = null;
-            return;
-        }
-
-        if(this._comandoPvirgulaOp_ == child)
-        {
-            this._comandoPvirgulaOp_ = null;
-            return;
-        }
-
-        if(this._comando_ == child)
-        {
-            this._comando_ = null;
-            return;
-        }
-
-        if(this._pontovirgula_ == child)
-        {
-            this._pontovirgula_ = null;
+            this._casoValorLista_ = null;
             return;
         }
 
@@ -269,39 +84,9 @@ public final class ACasoCasoValorOp extends PCasoValorOp
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._caso_ == oldChild)
+        if(this._casoValorLista_ == oldChild)
         {
-            setCaso((TCaso) newChild);
-            return;
-        }
-
-        if(this._valor_ == oldChild)
-        {
-            setValor((PValor) newChild);
-            return;
-        }
-
-        if(this._doispontos_ == oldChild)
-        {
-            setDoispontos((TDoispontos) newChild);
-            return;
-        }
-
-        if(this._comandoPvirgulaOp_ == oldChild)
-        {
-            setComandoPvirgulaOp((PComandoPvirgulaOp) newChild);
-            return;
-        }
-
-        if(this._comando_ == oldChild)
-        {
-            setComando((PComando) newChild);
-            return;
-        }
-
-        if(this._pontovirgula_ == oldChild)
-        {
-            setPontovirgula((TPontovirgula) newChild);
+            setCasoValorLista((PCasoValorLista) newChild);
             return;
         }
 

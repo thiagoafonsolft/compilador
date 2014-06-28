@@ -134,11 +134,18 @@ Productions
 		
 	var =
 		{id} id | 
-		{vetor} id abrecolchete n_inteiro fechacolchete ;
-		
+		{vetor} id abrecolchete n_inteiro fechacolchete ;	
+	
 	var_virgula_op =
-		{virgula} var virgula |
+		{lista} var_virgula_lista |
 		{empty} ;
+		
+	var_virgula_lista =
+		{virgula_lista} var_virgula_lista var_virgula |
+		{var_virgula} var_virgula;
+	
+	var_virgula =
+		var virgula;
 		
 	valor =
 		{string} string | 
@@ -149,34 +156,47 @@ Productions
 		{atribuicao} var atribuicao exp pontovirgula |
 		{leia} leia abreparentese var_virgula_op var fechaparentese pontovirgula |
 		{escreva} escreva abreparentese exp_virgula_op exp fechaparentese pontovirgula |	
-		{se} se abreparentese exp_logica fechaparentese entao comando_pvirgula_op comando_pvirgula senao_opcional fimse pontovirgula |
-		{avalie} avalie abreparentese exp fechaparentese caso_valor_op senao_opcional fimavalie pontovirgula |
-		{enquanto} enquanto abreparentese exp_logica fechaparentese faca comando_pvirgula_op comando_pvirgula fimenquanto pontovirgula |
-		{repita} repita comando_pvirgula_op comando_pvirgula ate abreparentese exp_logica fechaparentese pontovirgula |
+		{se} se abreparentese exp_logica fechaparentese entao comando_op_lista senao_op fimse pontovirgula |
+		{avalie} avalie abreparentese exp fechaparentese caso_valor_op senao_doispontos_op fimavalie pontovirgula |
+		{enquanto} enquanto abreparentese exp_logica fechaparentese faca comando_op_lista fimenquanto pontovirgula |
+		{repita} repita comando_op_lista ate abreparentese exp_logica fechaparentese pontovirgula |
 		{para} para_inicio para_fim |
 		{passo} para_inicio passo n_inteiro para_fim ;
-
-	comando_pvirgula =
-		comando pontovirgula ;
-	
-	comando_pvirgula_op =
-		{comando} comando pontovirgula |
+			
+	comando_op_lista =
+		{lista} comando_op_lista comando |
+		{comando} comando ;	
+		
+	senao_op =
+		{senao} senao_comando |
 		{empty} ;
 		
-	senao_opcional =
-		{senao} senao comando_pvirgula_op comando pontovirgula |
-		{senaodoispontos} senao doispontos comando_pvirgula_op comando pontovirgula |
+	senao_doispontos_op =
+		{senao} senao_doispontos |
 		{empty} ;
+		
+	senao_comando =
+		senao comando_op_lista ;
+		
+	senao_doispontos =
+		senao doispontos comando_op_lista ;
 	
 	caso_valor_op =
-		{caso} caso valor doispontos comando_pvirgula_op comando pontovirgula |
+		{caso} caso_valor_lista |
 		{empty} ;
+	
+	caso_valor_lista =
+		{caso_valor_lista} caso_valor_lista caso_valor |
+		{caso_valor} caso_valor ;
+	
+	caso_valor = 
+		caso valor doispontos comando_op_lista ;
 	
 	para_inicio =
 		para var de n_inteiro ;
 		
 	para_fim =
-		ate n_inteiro faca comando_pvirgula_op comando_pvirgula fimpara pontovirgula ;
+		ate n_inteiro faca comando_op_lista fimpara pontovirgula ;
 		
 	exp = 		
 		{soma_exp} soma_exp |
@@ -195,8 +215,15 @@ Productions
 		{fator} fator ;
 	
 	exp_virgula_op =
-		{virgula} exp virgula |
+		{virgula} exp_virugla_lista |
 		{empty} ;
+		
+	exp_virugla_lista =
+		{lista} exp_virugla_lista exp_virgula |
+		{exp_virgula} exp_virgula ;
+	
+	exp_virgula =
+		exp virgula;
 		
 	exp_logica =		
 		{relacional} soma_relacional soma_exp |

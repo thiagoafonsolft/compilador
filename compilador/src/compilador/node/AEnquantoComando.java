@@ -12,8 +12,7 @@ public final class AEnquantoComando extends PComando
     private PExpLogica _expLogica_;
     private TFechaparentese _fechaparentese_;
     private TFaca _faca_;
-    private PComandoPvirgulaOp _comandoPvirgulaOp_;
-    private PComandoPvirgula _comandoPvirgula_;
+    private PComandoOpLista _comandoOpLista_;
     private TFimenquanto _fimenquanto_;
     private TPontovirgula _pontovirgula_;
 
@@ -28,8 +27,7 @@ public final class AEnquantoComando extends PComando
         @SuppressWarnings("hiding") PExpLogica _expLogica_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") TFaca _faca_,
-        @SuppressWarnings("hiding") PComandoPvirgulaOp _comandoPvirgulaOp_,
-        @SuppressWarnings("hiding") PComandoPvirgula _comandoPvirgula_,
+        @SuppressWarnings("hiding") PComandoOpLista _comandoOpLista_,
         @SuppressWarnings("hiding") TFimenquanto _fimenquanto_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
     {
@@ -44,9 +42,7 @@ public final class AEnquantoComando extends PComando
 
         setFaca(_faca_);
 
-        setComandoPvirgulaOp(_comandoPvirgulaOp_);
-
-        setComandoPvirgula(_comandoPvirgula_);
+        setComandoOpLista(_comandoOpLista_);
 
         setFimenquanto(_fimenquanto_);
 
@@ -63,8 +59,7 @@ public final class AEnquantoComando extends PComando
             cloneNode(this._expLogica_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._faca_),
-            cloneNode(this._comandoPvirgulaOp_),
-            cloneNode(this._comandoPvirgula_),
+            cloneNode(this._comandoOpLista_),
             cloneNode(this._fimenquanto_),
             cloneNode(this._pontovirgula_));
     }
@@ -200,16 +195,16 @@ public final class AEnquantoComando extends PComando
         this._faca_ = node;
     }
 
-    public PComandoPvirgulaOp getComandoPvirgulaOp()
+    public PComandoOpLista getComandoOpLista()
     {
-        return this._comandoPvirgulaOp_;
+        return this._comandoOpLista_;
     }
 
-    public void setComandoPvirgulaOp(PComandoPvirgulaOp node)
+    public void setComandoOpLista(PComandoOpLista node)
     {
-        if(this._comandoPvirgulaOp_ != null)
+        if(this._comandoOpLista_ != null)
         {
-            this._comandoPvirgulaOp_.parent(null);
+            this._comandoOpLista_.parent(null);
         }
 
         if(node != null)
@@ -222,32 +217,7 @@ public final class AEnquantoComando extends PComando
             node.parent(this);
         }
 
-        this._comandoPvirgulaOp_ = node;
-    }
-
-    public PComandoPvirgula getComandoPvirgula()
-    {
-        return this._comandoPvirgula_;
-    }
-
-    public void setComandoPvirgula(PComandoPvirgula node)
-    {
-        if(this._comandoPvirgula_ != null)
-        {
-            this._comandoPvirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandoPvirgula_ = node;
+        this._comandoOpLista_ = node;
     }
 
     public TFimenquanto getFimenquanto()
@@ -309,8 +279,7 @@ public final class AEnquantoComando extends PComando
             + toString(this._expLogica_)
             + toString(this._fechaparentese_)
             + toString(this._faca_)
-            + toString(this._comandoPvirgulaOp_)
-            + toString(this._comandoPvirgula_)
+            + toString(this._comandoOpLista_)
             + toString(this._fimenquanto_)
             + toString(this._pontovirgula_);
     }
@@ -349,15 +318,9 @@ public final class AEnquantoComando extends PComando
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == child)
+        if(this._comandoOpLista_ == child)
         {
-            this._comandoPvirgulaOp_ = null;
-            return;
-        }
-
-        if(this._comandoPvirgula_ == child)
-        {
-            this._comandoPvirgula_ = null;
+            this._comandoOpLista_ = null;
             return;
         }
 
@@ -410,15 +373,9 @@ public final class AEnquantoComando extends PComando
             return;
         }
 
-        if(this._comandoPvirgulaOp_ == oldChild)
+        if(this._comandoOpLista_ == oldChild)
         {
-            setComandoPvirgulaOp((PComandoPvirgulaOp) newChild);
-            return;
-        }
-
-        if(this._comandoPvirgula_ == oldChild)
-        {
-            setComandoPvirgula((PComandoPvirgula) newChild);
+            setComandoOpLista((PComandoOpLista) newChild);
             return;
         }
 
