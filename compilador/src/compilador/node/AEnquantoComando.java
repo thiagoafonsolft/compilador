@@ -9,7 +9,7 @@ public final class AEnquantoComando extends PComando
 {
     private TEnquanto _enquanto_;
     private TAbreparentese _abreparentese_;
-    private PExpLogicaLista _expLogicaLista_;
+    private PExp _exp_;
     private TFechaparentese _fechaparentese_;
     private TFaca _faca_;
     private PComandoOpLista _comandoOpLista_;
@@ -24,7 +24,7 @@ public final class AEnquantoComando extends PComando
     public AEnquantoComando(
         @SuppressWarnings("hiding") TEnquanto _enquanto_,
         @SuppressWarnings("hiding") TAbreparentese _abreparentese_,
-        @SuppressWarnings("hiding") PExpLogicaLista _expLogicaLista_,
+        @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") TFaca _faca_,
         @SuppressWarnings("hiding") PComandoOpLista _comandoOpLista_,
@@ -36,7 +36,7 @@ public final class AEnquantoComando extends PComando
 
         setAbreparentese(_abreparentese_);
 
-        setExpLogicaLista(_expLogicaLista_);
+        setExp(_exp_);
 
         setFechaparentese(_fechaparentese_);
 
@@ -56,7 +56,7 @@ public final class AEnquantoComando extends PComando
         return new AEnquantoComando(
             cloneNode(this._enquanto_),
             cloneNode(this._abreparentese_),
-            cloneNode(this._expLogicaLista_),
+            cloneNode(this._exp_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._faca_),
             cloneNode(this._comandoOpLista_),
@@ -120,16 +120,16 @@ public final class AEnquantoComando extends PComando
         this._abreparentese_ = node;
     }
 
-    public PExpLogicaLista getExpLogicaLista()
+    public PExp getExp()
     {
-        return this._expLogicaLista_;
+        return this._exp_;
     }
 
-    public void setExpLogicaLista(PExpLogicaLista node)
+    public void setExp(PExp node)
     {
-        if(this._expLogicaLista_ != null)
+        if(this._exp_ != null)
         {
-            this._expLogicaLista_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -142,7 +142,7 @@ public final class AEnquantoComando extends PComando
             node.parent(this);
         }
 
-        this._expLogicaLista_ = node;
+        this._exp_ = node;
     }
 
     public TFechaparentese getFechaparentese()
@@ -276,7 +276,7 @@ public final class AEnquantoComando extends PComando
         return ""
             + toString(this._enquanto_)
             + toString(this._abreparentese_)
-            + toString(this._expLogicaLista_)
+            + toString(this._exp_)
             + toString(this._fechaparentese_)
             + toString(this._faca_)
             + toString(this._comandoOpLista_)
@@ -300,9 +300,9 @@ public final class AEnquantoComando extends PComando
             return;
         }
 
-        if(this._expLogicaLista_ == child)
+        if(this._exp_ == child)
         {
-            this._expLogicaLista_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -355,9 +355,9 @@ public final class AEnquantoComando extends PComando
             return;
         }
 
-        if(this._expLogicaLista_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setExpLogicaLista((PExpLogicaLista) newChild);
+            setExp((PExp) newChild);
             return;
         }
 

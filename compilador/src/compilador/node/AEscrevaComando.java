@@ -9,7 +9,7 @@ public final class AEscrevaComando extends PComando
 {
     private TEscreva _escreva_;
     private TAbreparentese _abreparentese_;
-    private PExpVirgulaOp _expVirgulaOp_;
+    private PExpViruglaLista _expViruglaLista_;
     private PExp _exp_;
     private TFechaparentese _fechaparentese_;
     private TPontovirgula _pontovirgula_;
@@ -22,7 +22,7 @@ public final class AEscrevaComando extends PComando
     public AEscrevaComando(
         @SuppressWarnings("hiding") TEscreva _escreva_,
         @SuppressWarnings("hiding") TAbreparentese _abreparentese_,
-        @SuppressWarnings("hiding") PExpVirgulaOp _expVirgulaOp_,
+        @SuppressWarnings("hiding") PExpViruglaLista _expViruglaLista_,
         @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
@@ -32,7 +32,7 @@ public final class AEscrevaComando extends PComando
 
         setAbreparentese(_abreparentese_);
 
-        setExpVirgulaOp(_expVirgulaOp_);
+        setExpViruglaLista(_expViruglaLista_);
 
         setExp(_exp_);
 
@@ -48,7 +48,7 @@ public final class AEscrevaComando extends PComando
         return new AEscrevaComando(
             cloneNode(this._escreva_),
             cloneNode(this._abreparentese_),
-            cloneNode(this._expVirgulaOp_),
+            cloneNode(this._expViruglaLista_),
             cloneNode(this._exp_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._pontovirgula_));
@@ -110,16 +110,16 @@ public final class AEscrevaComando extends PComando
         this._abreparentese_ = node;
     }
 
-    public PExpVirgulaOp getExpVirgulaOp()
+    public PExpViruglaLista getExpViruglaLista()
     {
-        return this._expVirgulaOp_;
+        return this._expViruglaLista_;
     }
 
-    public void setExpVirgulaOp(PExpVirgulaOp node)
+    public void setExpViruglaLista(PExpViruglaLista node)
     {
-        if(this._expVirgulaOp_ != null)
+        if(this._expViruglaLista_ != null)
         {
-            this._expVirgulaOp_.parent(null);
+            this._expViruglaLista_.parent(null);
         }
 
         if(node != null)
@@ -132,7 +132,7 @@ public final class AEscrevaComando extends PComando
             node.parent(this);
         }
 
-        this._expVirgulaOp_ = node;
+        this._expViruglaLista_ = node;
     }
 
     public PExp getExp()
@@ -216,7 +216,7 @@ public final class AEscrevaComando extends PComando
         return ""
             + toString(this._escreva_)
             + toString(this._abreparentese_)
-            + toString(this._expVirgulaOp_)
+            + toString(this._expViruglaLista_)
             + toString(this._exp_)
             + toString(this._fechaparentese_)
             + toString(this._pontovirgula_);
@@ -238,9 +238,9 @@ public final class AEscrevaComando extends PComando
             return;
         }
 
-        if(this._expVirgulaOp_ == child)
+        if(this._expViruglaLista_ == child)
         {
-            this._expVirgulaOp_ = null;
+            this._expViruglaLista_ = null;
             return;
         }
 
@@ -281,9 +281,9 @@ public final class AEscrevaComando extends PComando
             return;
         }
 
-        if(this._expVirgulaOp_ == oldChild)
+        if(this._expViruglaLista_ == oldChild)
         {
-            setExpVirgulaOp((PExpVirgulaOp) newChild);
+            setExpViruglaLista((PExpViruglaLista) newChild);
             return;
         }
 

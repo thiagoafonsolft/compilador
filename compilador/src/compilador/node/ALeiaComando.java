@@ -9,7 +9,7 @@ public final class ALeiaComando extends PComando
 {
     private TLeia _leia_;
     private TAbreparentese _abreparentese_;
-    private PVarVirgulaOp _varVirgulaOp_;
+    private PVarVirgulaLista _varVirgulaLista_;
     private PVar _var_;
     private TFechaparentese _fechaparentese_;
     private TPontovirgula _pontovirgula_;
@@ -22,7 +22,7 @@ public final class ALeiaComando extends PComando
     public ALeiaComando(
         @SuppressWarnings("hiding") TLeia _leia_,
         @SuppressWarnings("hiding") TAbreparentese _abreparentese_,
-        @SuppressWarnings("hiding") PVarVirgulaOp _varVirgulaOp_,
+        @SuppressWarnings("hiding") PVarVirgulaLista _varVirgulaLista_,
         @SuppressWarnings("hiding") PVar _var_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
@@ -32,7 +32,7 @@ public final class ALeiaComando extends PComando
 
         setAbreparentese(_abreparentese_);
 
-        setVarVirgulaOp(_varVirgulaOp_);
+        setVarVirgulaLista(_varVirgulaLista_);
 
         setVar(_var_);
 
@@ -48,7 +48,7 @@ public final class ALeiaComando extends PComando
         return new ALeiaComando(
             cloneNode(this._leia_),
             cloneNode(this._abreparentese_),
-            cloneNode(this._varVirgulaOp_),
+            cloneNode(this._varVirgulaLista_),
             cloneNode(this._var_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._pontovirgula_));
@@ -110,16 +110,16 @@ public final class ALeiaComando extends PComando
         this._abreparentese_ = node;
     }
 
-    public PVarVirgulaOp getVarVirgulaOp()
+    public PVarVirgulaLista getVarVirgulaLista()
     {
-        return this._varVirgulaOp_;
+        return this._varVirgulaLista_;
     }
 
-    public void setVarVirgulaOp(PVarVirgulaOp node)
+    public void setVarVirgulaLista(PVarVirgulaLista node)
     {
-        if(this._varVirgulaOp_ != null)
+        if(this._varVirgulaLista_ != null)
         {
-            this._varVirgulaOp_.parent(null);
+            this._varVirgulaLista_.parent(null);
         }
 
         if(node != null)
@@ -132,7 +132,7 @@ public final class ALeiaComando extends PComando
             node.parent(this);
         }
 
-        this._varVirgulaOp_ = node;
+        this._varVirgulaLista_ = node;
     }
 
     public PVar getVar()
@@ -216,7 +216,7 @@ public final class ALeiaComando extends PComando
         return ""
             + toString(this._leia_)
             + toString(this._abreparentese_)
-            + toString(this._varVirgulaOp_)
+            + toString(this._varVirgulaLista_)
             + toString(this._var_)
             + toString(this._fechaparentese_)
             + toString(this._pontovirgula_);
@@ -238,9 +238,9 @@ public final class ALeiaComando extends PComando
             return;
         }
 
-        if(this._varVirgulaOp_ == child)
+        if(this._varVirgulaLista_ == child)
         {
-            this._varVirgulaOp_ = null;
+            this._varVirgulaLista_ = null;
             return;
         }
 
@@ -281,9 +281,9 @@ public final class ALeiaComando extends PComando
             return;
         }
 
-        if(this._varVirgulaOp_ == oldChild)
+        if(this._varVirgulaLista_ == oldChild)
         {
-            setVarVirgulaOp((PVarVirgulaOp) newChild);
+            setVarVirgulaLista((PVarVirgulaLista) newChild);
             return;
         }
 

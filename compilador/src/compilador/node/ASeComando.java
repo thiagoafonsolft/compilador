@@ -9,11 +9,11 @@ public final class ASeComando extends PComando
 {
     private TSe _se_;
     private TAbreparentese _abreparentese_;
-    private PExpLogicaLista _expLogicaLista_;
+    private PExp _exp_;
     private TFechaparentese _fechaparentese_;
     private TEntao _entao_;
     private PComandoOpLista _comandoOpLista_;
-    private PSenaoOp _senaoOp_;
+    private PSenaoComando _senaoComando_;
     private TFimse _fimse_;
     private TPontovirgula _pontovirgula_;
 
@@ -25,11 +25,11 @@ public final class ASeComando extends PComando
     public ASeComando(
         @SuppressWarnings("hiding") TSe _se_,
         @SuppressWarnings("hiding") TAbreparentese _abreparentese_,
-        @SuppressWarnings("hiding") PExpLogicaLista _expLogicaLista_,
+        @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") TEntao _entao_,
         @SuppressWarnings("hiding") PComandoOpLista _comandoOpLista_,
-        @SuppressWarnings("hiding") PSenaoOp _senaoOp_,
+        @SuppressWarnings("hiding") PSenaoComando _senaoComando_,
         @SuppressWarnings("hiding") TFimse _fimse_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
     {
@@ -38,7 +38,7 @@ public final class ASeComando extends PComando
 
         setAbreparentese(_abreparentese_);
 
-        setExpLogicaLista(_expLogicaLista_);
+        setExp(_exp_);
 
         setFechaparentese(_fechaparentese_);
 
@@ -46,7 +46,7 @@ public final class ASeComando extends PComando
 
         setComandoOpLista(_comandoOpLista_);
 
-        setSenaoOp(_senaoOp_);
+        setSenaoComando(_senaoComando_);
 
         setFimse(_fimse_);
 
@@ -60,11 +60,11 @@ public final class ASeComando extends PComando
         return new ASeComando(
             cloneNode(this._se_),
             cloneNode(this._abreparentese_),
-            cloneNode(this._expLogicaLista_),
+            cloneNode(this._exp_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._entao_),
             cloneNode(this._comandoOpLista_),
-            cloneNode(this._senaoOp_),
+            cloneNode(this._senaoComando_),
             cloneNode(this._fimse_),
             cloneNode(this._pontovirgula_));
     }
@@ -125,16 +125,16 @@ public final class ASeComando extends PComando
         this._abreparentese_ = node;
     }
 
-    public PExpLogicaLista getExpLogicaLista()
+    public PExp getExp()
     {
-        return this._expLogicaLista_;
+        return this._exp_;
     }
 
-    public void setExpLogicaLista(PExpLogicaLista node)
+    public void setExp(PExp node)
     {
-        if(this._expLogicaLista_ != null)
+        if(this._exp_ != null)
         {
-            this._expLogicaLista_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -147,7 +147,7 @@ public final class ASeComando extends PComando
             node.parent(this);
         }
 
-        this._expLogicaLista_ = node;
+        this._exp_ = node;
     }
 
     public TFechaparentese getFechaparentese()
@@ -225,16 +225,16 @@ public final class ASeComando extends PComando
         this._comandoOpLista_ = node;
     }
 
-    public PSenaoOp getSenaoOp()
+    public PSenaoComando getSenaoComando()
     {
-        return this._senaoOp_;
+        return this._senaoComando_;
     }
 
-    public void setSenaoOp(PSenaoOp node)
+    public void setSenaoComando(PSenaoComando node)
     {
-        if(this._senaoOp_ != null)
+        if(this._senaoComando_ != null)
         {
-            this._senaoOp_.parent(null);
+            this._senaoComando_.parent(null);
         }
 
         if(node != null)
@@ -247,7 +247,7 @@ public final class ASeComando extends PComando
             node.parent(this);
         }
 
-        this._senaoOp_ = node;
+        this._senaoComando_ = node;
     }
 
     public TFimse getFimse()
@@ -306,11 +306,11 @@ public final class ASeComando extends PComando
         return ""
             + toString(this._se_)
             + toString(this._abreparentese_)
-            + toString(this._expLogicaLista_)
+            + toString(this._exp_)
             + toString(this._fechaparentese_)
             + toString(this._entao_)
             + toString(this._comandoOpLista_)
-            + toString(this._senaoOp_)
+            + toString(this._senaoComando_)
             + toString(this._fimse_)
             + toString(this._pontovirgula_);
     }
@@ -331,9 +331,9 @@ public final class ASeComando extends PComando
             return;
         }
 
-        if(this._expLogicaLista_ == child)
+        if(this._exp_ == child)
         {
-            this._expLogicaLista_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -355,9 +355,9 @@ public final class ASeComando extends PComando
             return;
         }
 
-        if(this._senaoOp_ == child)
+        if(this._senaoComando_ == child)
         {
-            this._senaoOp_ = null;
+            this._senaoComando_ = null;
             return;
         }
 
@@ -392,9 +392,9 @@ public final class ASeComando extends PComando
             return;
         }
 
-        if(this._expLogicaLista_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setExpLogicaLista((PExpLogicaLista) newChild);
+            setExp((PExp) newChild);
             return;
         }
 
@@ -416,9 +416,9 @@ public final class ASeComando extends PComando
             return;
         }
 
-        if(this._senaoOp_ == oldChild)
+        if(this._senaoComando_ == oldChild)
         {
-            setSenaoOp((PSenaoOp) newChild);
+            setSenaoComando((PSenaoComando) newChild);
             return;
         }
 

@@ -144,10 +144,10 @@ Productions
 		{atribuicao} var atribuicao exp pontovirgula |
 		{leia} leia abreparentese var_virgula_lista? var fechaparentese pontovirgula |
 		{escreva} escreva abreparentese exp_virugla_lista? exp fechaparentese pontovirgula |	
-		{se} se abreparentese exp fechaparentese entao comando_op_lista senao_comando? fimse pontovirgula |
+		{se} se abreparentese exp_logica_lista fechaparentese entao comando_op_lista senao_comando? fimse pontovirgula |
 		{avalie} avalie abreparentese exp fechaparentese caso_valor_lista? senao_doispontos? fimavalie pontovirgula |
-		{enquanto} enquanto abreparentese exp fechaparentese faca comando_op_lista fimenquanto pontovirgula |
-		{repita} repita comando_op_lista ate abreparentese exp fechaparentese pontovirgula |
+		{enquanto} enquanto abreparentese exp_logica_lista fechaparentese faca comando_op_lista fimenquanto pontovirgula |
+		{repita} repita comando_op_lista ate abreparentese exp_logica_lista fechaparentese pontovirgula |
 		{para} para_inicio para_fim |
 		{passo} para_inicio passo n_inteiro para_fim ;
 			
@@ -174,80 +174,67 @@ Productions
 	para_fim =
 		ate n_inteiro faca comando_op_lista fimpara pontovirgula ;
 		
+	exp = 		
+		{soma_exp} soma_exp |
+		{subtracaoexp} subtracao exp |
+		{exp_logica} exp_logica ;
+		
+	soma_relacional =
+		soma_exp relacional ;
+
+	soma_exp =
+		{soma} soma_exp soma termo |
+		{termo} termo ;
+	
+	termo =
+		{mult} termo mult fator |
+		{fator} fator ;
+
 	exp_virugla_lista =
 		{lista} exp_virugla_lista exp_virgula |
 		{exp_virgula} exp_virgula ;
 	
 	exp_virgula =
 		exp virgula;
-	
-	exp =		
-		logica_ou ;					
-
-	logica_ou =
-		{log_xor} logica_xor |
-		{log_ou} logica_ou ou logica_xor ;		
 		
-	logica_xor =
-		{log_e} logica_e |
-		{log_xor} logica_xor xor logica_e ;
+	exp_logica_lista =
+		{lista} exp_logica_lista exp_logica |
+		{exp_logica} exp_logica ;
 		
-	logica_e =
-		{log_igualdade} logica_igualdade |
-		{log_e} logica_e e logica_igualdade ;	
+	exp_logica =		
+		{relacional} exp_logica_original |
+		{negacao} negacao exp_logica |
+		{logico} exp_logica_original logico_eouxor ;
 		
-	logica_igualdade =
-		{logmaior} logica_maior |
-		{logigual} logica_igualdade igualdade logica_maior;
+	exp_logica_original =
+		soma_relacional soma_exp ;
 		
-	logica_maior =
-		{logmenor} logica_menor |
-		{logmaior} logica_maior relacional_maior logica_menor;
-	
-	logica_menor =
-		{soma} soma_exp |
-		{logmenor} logica_menor relacional_menor soma_exp ;
-		
-	soma_exp =
-		{soma} soma_exp soma termo |
-		{prox} termo ;	
-	
-	termo =
-		{mult} termo mult negar |
-		{prox} negar ;
-		
-	negar =
-		{neg} negacao negar |
-		{fatorexp} fator ;
-		
-	fator =
-		{exp} abreparentese exp fechaparentese |
-		{valor} valor |
-		{var} var ;	
-		
-	//negacao
-		
-	mult =
-		{multiplicacao} multiplicacao |
-		{divisao} divisao ;	
-	
 	soma = 
 		{adicao} adicao |
 		{subtracao} subtracao ;
 	
-	relacional_menor =
-		{menorigual} menorigual |
-		{menor} menor ;
+	mult =
+		{multiplicacao} multiplicacao |
+		{divisao} divisao ;
+		
+	logico_eouxor =
+		op_logico exp_logica ;
+		
+	op_logico =
+		{e} e |
+		{ou} ou |
+		{xor} xor ;
 	
-	relacional_maior =
+	relacional =
+		{igual} igual |
+		{diferente} diferente |
+		{menorigual} menorigual |
 		{maiorigual} maiorigual | 
+		{menor} menor |
 		{maior} maior ;
 	
-	igualdade = 
-		{igual} igual |
-		{diferente} diferente ;
-	//e 
-	//xor 
-	//ou
-
+	fator =
+		{exp} abreparentese exp fechaparentese |
+		{valor} valor |
+		{var} var ;
 	

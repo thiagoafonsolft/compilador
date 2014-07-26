@@ -8,8 +8,8 @@ import compilador.analysis.*;
 public final class APrograma extends PPrograma
 {
     private PProgramaInicio _programaInicio_;
-    private PDeclaracaoOp _declaracaoOp_;
-    private PComandoOp _comandoOp_;
+    private PDeclaracaoLista _declaracaoLista_;
+    private PComandoLista _comandoLista_;
     private TFimPrograma _fimPrograma_;
 
     public APrograma()
@@ -19,16 +19,16 @@ public final class APrograma extends PPrograma
 
     public APrograma(
         @SuppressWarnings("hiding") PProgramaInicio _programaInicio_,
-        @SuppressWarnings("hiding") PDeclaracaoOp _declaracaoOp_,
-        @SuppressWarnings("hiding") PComandoOp _comandoOp_,
+        @SuppressWarnings("hiding") PDeclaracaoLista _declaracaoLista_,
+        @SuppressWarnings("hiding") PComandoLista _comandoLista_,
         @SuppressWarnings("hiding") TFimPrograma _fimPrograma_)
     {
         // Constructor
         setProgramaInicio(_programaInicio_);
 
-        setDeclaracaoOp(_declaracaoOp_);
+        setDeclaracaoLista(_declaracaoLista_);
 
-        setComandoOp(_comandoOp_);
+        setComandoLista(_comandoLista_);
 
         setFimPrograma(_fimPrograma_);
 
@@ -39,8 +39,8 @@ public final class APrograma extends PPrograma
     {
         return new APrograma(
             cloneNode(this._programaInicio_),
-            cloneNode(this._declaracaoOp_),
-            cloneNode(this._comandoOp_),
+            cloneNode(this._declaracaoLista_),
+            cloneNode(this._comandoLista_),
             cloneNode(this._fimPrograma_));
     }
 
@@ -75,16 +75,16 @@ public final class APrograma extends PPrograma
         this._programaInicio_ = node;
     }
 
-    public PDeclaracaoOp getDeclaracaoOp()
+    public PDeclaracaoLista getDeclaracaoLista()
     {
-        return this._declaracaoOp_;
+        return this._declaracaoLista_;
     }
 
-    public void setDeclaracaoOp(PDeclaracaoOp node)
+    public void setDeclaracaoLista(PDeclaracaoLista node)
     {
-        if(this._declaracaoOp_ != null)
+        if(this._declaracaoLista_ != null)
         {
-            this._declaracaoOp_.parent(null);
+            this._declaracaoLista_.parent(null);
         }
 
         if(node != null)
@@ -97,19 +97,19 @@ public final class APrograma extends PPrograma
             node.parent(this);
         }
 
-        this._declaracaoOp_ = node;
+        this._declaracaoLista_ = node;
     }
 
-    public PComandoOp getComandoOp()
+    public PComandoLista getComandoLista()
     {
-        return this._comandoOp_;
+        return this._comandoLista_;
     }
 
-    public void setComandoOp(PComandoOp node)
+    public void setComandoLista(PComandoLista node)
     {
-        if(this._comandoOp_ != null)
+        if(this._comandoLista_ != null)
         {
-            this._comandoOp_.parent(null);
+            this._comandoLista_.parent(null);
         }
 
         if(node != null)
@@ -122,7 +122,7 @@ public final class APrograma extends PPrograma
             node.parent(this);
         }
 
-        this._comandoOp_ = node;
+        this._comandoLista_ = node;
     }
 
     public TFimPrograma getFimPrograma()
@@ -155,8 +155,8 @@ public final class APrograma extends PPrograma
     {
         return ""
             + toString(this._programaInicio_)
-            + toString(this._declaracaoOp_)
-            + toString(this._comandoOp_)
+            + toString(this._declaracaoLista_)
+            + toString(this._comandoLista_)
             + toString(this._fimPrograma_);
     }
 
@@ -170,15 +170,15 @@ public final class APrograma extends PPrograma
             return;
         }
 
-        if(this._declaracaoOp_ == child)
+        if(this._declaracaoLista_ == child)
         {
-            this._declaracaoOp_ = null;
+            this._declaracaoLista_ = null;
             return;
         }
 
-        if(this._comandoOp_ == child)
+        if(this._comandoLista_ == child)
         {
-            this._comandoOp_ = null;
+            this._comandoLista_ = null;
             return;
         }
 
@@ -201,15 +201,15 @@ public final class APrograma extends PPrograma
             return;
         }
 
-        if(this._declaracaoOp_ == oldChild)
+        if(this._declaracaoLista_ == oldChild)
         {
-            setDeclaracaoOp((PDeclaracaoOp) newChild);
+            setDeclaracaoLista((PDeclaracaoLista) newChild);
             return;
         }
 
-        if(this._comandoOp_ == oldChild)
+        if(this._comandoLista_ == oldChild)
         {
-            setComandoOp((PComandoOp) newChild);
+            setComandoLista((PComandoLista) newChild);
             return;
         }
 

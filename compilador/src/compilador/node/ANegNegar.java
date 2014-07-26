@@ -5,26 +5,22 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AMultTermo extends PTermo
+public final class ANegNegar extends PNegar
 {
-    private PTermo _termo_;
-    private PMult _mult_;
+    private TNegacao _negacao_;
     private PNegar _negar_;
 
-    public AMultTermo()
+    public ANegNegar()
     {
         // Constructor
     }
 
-    public AMultTermo(
-        @SuppressWarnings("hiding") PTermo _termo_,
-        @SuppressWarnings("hiding") PMult _mult_,
+    public ANegNegar(
+        @SuppressWarnings("hiding") TNegacao _negacao_,
         @SuppressWarnings("hiding") PNegar _negar_)
     {
         // Constructor
-        setTermo(_termo_);
-
-        setMult(_mult_);
+        setNegacao(_negacao_);
 
         setNegar(_negar_);
 
@@ -33,28 +29,27 @@ public final class AMultTermo extends PTermo
     @Override
     public Object clone()
     {
-        return new AMultTermo(
-            cloneNode(this._termo_),
-            cloneNode(this._mult_),
+        return new ANegNegar(
+            cloneNode(this._negacao_),
             cloneNode(this._negar_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAMultTermo(this);
+        ((Analysis) sw).caseANegNegar(this);
     }
 
-    public PTermo getTermo()
+    public TNegacao getNegacao()
     {
-        return this._termo_;
+        return this._negacao_;
     }
 
-    public void setTermo(PTermo node)
+    public void setNegacao(TNegacao node)
     {
-        if(this._termo_ != null)
+        if(this._negacao_ != null)
         {
-            this._termo_.parent(null);
+            this._negacao_.parent(null);
         }
 
         if(node != null)
@@ -67,32 +62,7 @@ public final class AMultTermo extends PTermo
             node.parent(this);
         }
 
-        this._termo_ = node;
-    }
-
-    public PMult getMult()
-    {
-        return this._mult_;
-    }
-
-    public void setMult(PMult node)
-    {
-        if(this._mult_ != null)
-        {
-            this._mult_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._mult_ = node;
+        this._negacao_ = node;
     }
 
     public PNegar getNegar()
@@ -124,8 +94,7 @@ public final class AMultTermo extends PTermo
     public String toString()
     {
         return ""
-            + toString(this._termo_)
-            + toString(this._mult_)
+            + toString(this._negacao_)
             + toString(this._negar_);
     }
 
@@ -133,15 +102,9 @@ public final class AMultTermo extends PTermo
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._termo_ == child)
+        if(this._negacao_ == child)
         {
-            this._termo_ = null;
-            return;
-        }
-
-        if(this._mult_ == child)
-        {
-            this._mult_ = null;
+            this._negacao_ = null;
             return;
         }
 
@@ -158,15 +121,9 @@ public final class AMultTermo extends PTermo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._termo_ == oldChild)
+        if(this._negacao_ == oldChild)
         {
-            setTermo((PTermo) newChild);
-            return;
-        }
-
-        if(this._mult_ == oldChild)
-        {
-            setMult((PMult) newChild);
+            setNegacao((TNegacao) newChild);
             return;
         }
 

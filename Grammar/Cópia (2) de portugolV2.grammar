@@ -182,31 +182,7 @@ Productions
 		exp virgula;
 	
 	exp =		
-		logica_ou ;					
-
-	logica_ou =
-		{log_xor} logica_xor |
-		{log_ou} logica_ou ou logica_xor ;		
-		
-	logica_xor =
-		{log_e} logica_e |
-		{log_xor} logica_xor xor logica_e ;
-		
-	logica_e =
-		{log_igualdade} logica_igualdade |
-		{log_e} logica_e e logica_igualdade ;	
-		
-	logica_igualdade =
-		{logmaior} logica_maior |
-		{logigual} logica_igualdade igualdade logica_maior;
-		
-	logica_maior =
-		{logmenor} logica_menor |
-		{logmaior} logica_maior relacional_maior logica_menor;
-	
-	logica_menor =
-		{soma} soma_exp |
-		{logmenor} logica_menor relacional_menor soma_exp ;
+		logica_ou ;
 		
 	soma_exp =
 		{soma} soma_exp soma termo |
@@ -223,7 +199,36 @@ Productions
 	fator =
 		{exp} abreparentese exp fechaparentese |
 		{valor} valor |
-		{var} var ;	
+		{var} var ;				
+	
+	//exp_logica =
+		//{log_ou} logica_ou |
+		//{exp} abreparentese exp_logica fechaparentese |
+		//{negacao_log} negacao exp_logica ;		
+
+	logica_ou =
+		{log_xor} logica_xor |
+		{log_ou} logica_ou ou logica_xor ;		
+		
+	logica_xor =
+		{log_e} logica_e |
+		{log_xor} logica_xor xor logica_e ;
+		
+	logica_e =
+		{log_igualdade} logica_igualdade |
+		{log_e} logica_e e logica_igualdade ;			
+		
+	logica_igualdade =
+		{logmaior} logica_maior |
+		{logigual} logica_igualdade igualdade logica_maior;
+		
+	logica_maior =
+		{logmenor} logica_menor |
+		{logmaior} logica_maior relacional_maior logica_menor;
+	
+	logica_menor =
+		{soma} soma_exp |
+		{logmenor} logica_menor relacional_menor soma_exp ;
 		
 	//negacao
 		

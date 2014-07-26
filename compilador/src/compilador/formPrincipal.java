@@ -204,6 +204,7 @@ public class formPrincipal extends javax.swing.JFrame {
         try {
             txtRetorno.setText(sint.Analisar());
         } catch (LexerException ex) {
+            txtRetorno.setText(ex.getMessage());
             Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(formPrincipal.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,7 +11,7 @@ public final class ARepitaComando extends PComando
     private PComandoOpLista _comandoOpLista_;
     private TAte _ate_;
     private TAbreparentese _abreparentese_;
-    private PExpLogicaLista _expLogicaLista_;
+    private PExp _exp_;
     private TFechaparentese _fechaparentese_;
     private TPontovirgula _pontovirgula_;
 
@@ -25,7 +25,7 @@ public final class ARepitaComando extends PComando
         @SuppressWarnings("hiding") PComandoOpLista _comandoOpLista_,
         @SuppressWarnings("hiding") TAte _ate_,
         @SuppressWarnings("hiding") TAbreparentese _abreparentese_,
-        @SuppressWarnings("hiding") PExpLogicaLista _expLogicaLista_,
+        @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TFechaparentese _fechaparentese_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
     {
@@ -38,7 +38,7 @@ public final class ARepitaComando extends PComando
 
         setAbreparentese(_abreparentese_);
 
-        setExpLogicaLista(_expLogicaLista_);
+        setExp(_exp_);
 
         setFechaparentese(_fechaparentese_);
 
@@ -54,7 +54,7 @@ public final class ARepitaComando extends PComando
             cloneNode(this._comandoOpLista_),
             cloneNode(this._ate_),
             cloneNode(this._abreparentese_),
-            cloneNode(this._expLogicaLista_),
+            cloneNode(this._exp_),
             cloneNode(this._fechaparentese_),
             cloneNode(this._pontovirgula_));
     }
@@ -165,16 +165,16 @@ public final class ARepitaComando extends PComando
         this._abreparentese_ = node;
     }
 
-    public PExpLogicaLista getExpLogicaLista()
+    public PExp getExp()
     {
-        return this._expLogicaLista_;
+        return this._exp_;
     }
 
-    public void setExpLogicaLista(PExpLogicaLista node)
+    public void setExp(PExp node)
     {
-        if(this._expLogicaLista_ != null)
+        if(this._exp_ != null)
         {
-            this._expLogicaLista_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -187,7 +187,7 @@ public final class ARepitaComando extends PComando
             node.parent(this);
         }
 
-        this._expLogicaLista_ = node;
+        this._exp_ = node;
     }
 
     public TFechaparentese getFechaparentese()
@@ -248,7 +248,7 @@ public final class ARepitaComando extends PComando
             + toString(this._comandoOpLista_)
             + toString(this._ate_)
             + toString(this._abreparentese_)
-            + toString(this._expLogicaLista_)
+            + toString(this._exp_)
             + toString(this._fechaparentese_)
             + toString(this._pontovirgula_);
     }
@@ -281,9 +281,9 @@ public final class ARepitaComando extends PComando
             return;
         }
 
-        if(this._expLogicaLista_ == child)
+        if(this._exp_ == child)
         {
-            this._expLogicaLista_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -330,9 +330,9 @@ public final class ARepitaComando extends PComando
             return;
         }
 
-        if(this._expLogicaLista_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setExpLogicaLista((PExpLogicaLista) newChild);
+            setExp((PExp) newChild);
             return;
         }
 

@@ -9,7 +9,7 @@ public final class ATipoDeclaracao extends PDeclaracao
 {
     private PTipo _tipo_;
     private TDoispontos _doispontos_;
-    private PVarVirgulaOp _varVirgulaOp_;
+    private PVarVirgulaLista _varVirgulaLista_;
     private PVar _var_;
     private TPontovirgula _pontovirgula_;
 
@@ -21,7 +21,7 @@ public final class ATipoDeclaracao extends PDeclaracao
     public ATipoDeclaracao(
         @SuppressWarnings("hiding") PTipo _tipo_,
         @SuppressWarnings("hiding") TDoispontos _doispontos_,
-        @SuppressWarnings("hiding") PVarVirgulaOp _varVirgulaOp_,
+        @SuppressWarnings("hiding") PVarVirgulaLista _varVirgulaLista_,
         @SuppressWarnings("hiding") PVar _var_,
         @SuppressWarnings("hiding") TPontovirgula _pontovirgula_)
     {
@@ -30,7 +30,7 @@ public final class ATipoDeclaracao extends PDeclaracao
 
         setDoispontos(_doispontos_);
 
-        setVarVirgulaOp(_varVirgulaOp_);
+        setVarVirgulaLista(_varVirgulaLista_);
 
         setVar(_var_);
 
@@ -44,7 +44,7 @@ public final class ATipoDeclaracao extends PDeclaracao
         return new ATipoDeclaracao(
             cloneNode(this._tipo_),
             cloneNode(this._doispontos_),
-            cloneNode(this._varVirgulaOp_),
+            cloneNode(this._varVirgulaLista_),
             cloneNode(this._var_),
             cloneNode(this._pontovirgula_));
     }
@@ -105,16 +105,16 @@ public final class ATipoDeclaracao extends PDeclaracao
         this._doispontos_ = node;
     }
 
-    public PVarVirgulaOp getVarVirgulaOp()
+    public PVarVirgulaLista getVarVirgulaLista()
     {
-        return this._varVirgulaOp_;
+        return this._varVirgulaLista_;
     }
 
-    public void setVarVirgulaOp(PVarVirgulaOp node)
+    public void setVarVirgulaLista(PVarVirgulaLista node)
     {
-        if(this._varVirgulaOp_ != null)
+        if(this._varVirgulaLista_ != null)
         {
-            this._varVirgulaOp_.parent(null);
+            this._varVirgulaLista_.parent(null);
         }
 
         if(node != null)
@@ -127,7 +127,7 @@ public final class ATipoDeclaracao extends PDeclaracao
             node.parent(this);
         }
 
-        this._varVirgulaOp_ = node;
+        this._varVirgulaLista_ = node;
     }
 
     public PVar getVar()
@@ -186,7 +186,7 @@ public final class ATipoDeclaracao extends PDeclaracao
         return ""
             + toString(this._tipo_)
             + toString(this._doispontos_)
-            + toString(this._varVirgulaOp_)
+            + toString(this._varVirgulaLista_)
             + toString(this._var_)
             + toString(this._pontovirgula_);
     }
@@ -207,9 +207,9 @@ public final class ATipoDeclaracao extends PDeclaracao
             return;
         }
 
-        if(this._varVirgulaOp_ == child)
+        if(this._varVirgulaLista_ == child)
         {
-            this._varVirgulaOp_ = null;
+            this._varVirgulaLista_ = null;
             return;
         }
 
@@ -244,9 +244,9 @@ public final class ATipoDeclaracao extends PDeclaracao
             return;
         }
 
-        if(this._varVirgulaOp_ == oldChild)
+        if(this._varVirgulaLista_ == oldChild)
         {
-            setVarVirgulaOp((PVarVirgulaOp) newChild);
+            setVarVirgulaLista((PVarVirgulaLista) newChild);
             return;
         }
 
