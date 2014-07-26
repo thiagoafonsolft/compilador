@@ -1,2 +1,2 @@
-Compilador PortugolV2 UFS 2014
+Compilador PortugolV4 UFS 2014
 ==========
