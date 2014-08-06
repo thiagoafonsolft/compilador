@@ -31,220 +31,88 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseStart(Start node)
     {
         inStart(node);
-        node.getPPrograma().apply(this);
+        node.getPProgram().apply(this);
         node.getEOF().apply(this);
         outStart(node);
     }
 
-    public void inAPrograma(APrograma node)
+    public void inAProgram(AProgram node)
     {
         defaultIn(node);
     }
 
-    public void outAPrograma(APrograma node)
+    public void outAProgram(AProgram node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAPrograma(APrograma node)
+    public void caseAProgram(AProgram node)
     {
-        inAPrograma(node);
-        if(node.getProgramaInicio() != null)
-        {
-            node.getProgramaInicio().apply(this);
-        }
-        if(node.getDeclaracaoLista() != null)
-        {
-            node.getDeclaracaoLista().apply(this);
-        }
-        if(node.getComandoLista() != null)
-        {
-            node.getComandoLista().apply(this);
-        }
-        if(node.getFimPrograma() != null)
-        {
-            node.getFimPrograma().apply(this);
-        }
-        outAPrograma(node);
-    }
-
-    public void inAProgramaInicio(AProgramaInicio node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAProgramaInicio(AProgramaInicio node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAProgramaInicio(AProgramaInicio node)
-    {
-        inAProgramaInicio(node);
-        if(node.getPrograma() != null)
-        {
-            node.getPrograma().apply(this);
-        }
+        inAProgram(node);
         if(node.getId() != null)
         {
             node.getId().apply(this);
         }
-        if(node.getInicio() != null)
         {
-            node.getInicio().apply(this);
+            List<PDecl> copy = new ArrayList<PDecl>(node.getDecl());
+            for(PDecl e : copy)
+            {
+                e.apply(this);
+            }
         }
-        outAProgramaInicio(node);
+        {
+            List<PComando> copy = new ArrayList<PComando>(node.getComando());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outAProgram(node);
     }
 
-    public void inADecListaDeclaracaoLista(ADecListaDeclaracaoLista node)
+    public void inAVarDecl(AVarDecl node)
     {
         defaultIn(node);
     }
 
-    public void outADecListaDeclaracaoLista(ADecListaDeclaracaoLista node)
+    public void outAVarDecl(AVarDecl node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseADecListaDeclaracaoLista(ADecListaDeclaracaoLista node)
+    public void caseAVarDecl(AVarDecl node)
     {
-        inADecListaDeclaracaoLista(node);
-        if(node.getDeclaracaoLista() != null)
-        {
-            node.getDeclaracaoLista().apply(this);
-        }
-        if(node.getDeclaracao() != null)
-        {
-            node.getDeclaracao().apply(this);
-        }
-        outADecListaDeclaracaoLista(node);
-    }
-
-    public void inADeclaracaoDeclaracaoLista(ADeclaracaoDeclaracaoLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outADeclaracaoDeclaracaoLista(ADeclaracaoDeclaracaoLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseADeclaracaoDeclaracaoLista(ADeclaracaoDeclaracaoLista node)
-    {
-        inADeclaracaoDeclaracaoLista(node);
-        if(node.getDeclaracao() != null)
-        {
-            node.getDeclaracao().apply(this);
-        }
-        outADeclaracaoDeclaracaoLista(node);
-    }
-
-    public void inAComListaComandoLista(AComListaComandoLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAComListaComandoLista(AComListaComandoLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAComListaComandoLista(AComListaComandoLista node)
-    {
-        inAComListaComandoLista(node);
-        if(node.getComandoLista() != null)
-        {
-            node.getComandoLista().apply(this);
-        }
-        if(node.getComando() != null)
-        {
-            node.getComando().apply(this);
-        }
-        outAComListaComandoLista(node);
-    }
-
-    public void inAComandoComandoLista(AComandoComandoLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAComandoComandoLista(AComandoComandoLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAComandoComandoLista(AComandoComandoLista node)
-    {
-        inAComandoComandoLista(node);
-        if(node.getComando() != null)
-        {
-            node.getComando().apply(this);
-        }
-        outAComandoComandoLista(node);
-    }
-
-    public void inATipoDeclaracao(ATipoDeclaracao node)
-    {
-        defaultIn(node);
-    }
-
-    public void outATipoDeclaracao(ATipoDeclaracao node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseATipoDeclaracao(ATipoDeclaracao node)
-    {
-        inATipoDeclaracao(node);
+        inAVarDecl(node);
         if(node.getTipo() != null)
         {
             node.getTipo().apply(this);
         }
-        if(node.getDoispontos() != null)
         {
-            node.getDoispontos().apply(this);
+            List<PVar> copy = new ArrayList<PVar>(node.getVar());
+            for(PVar e : copy)
+            {
+                e.apply(this);
+            }
         }
-        if(node.getVarVirgulaLista() != null)
-        {
-            node.getVarVirgulaLista().apply(this);
-        }
-        if(node.getVar() != null)
-        {
-            node.getVar().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
-        }
-        outATipoDeclaracao(node);
+        outAVarDecl(node);
     }
 
-    public void inAConstDeclaracao(AConstDeclaracao node)
+    public void inAConstDecl(AConstDecl node)
     {
         defaultIn(node);
     }
 
-    public void outAConstDeclaracao(AConstDeclaracao node)
+    public void outAConstDecl(AConstDecl node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAConstDeclaracao(AConstDeclaracao node)
+    public void caseAConstDecl(AConstDecl node)
     {
-        inAConstDeclaracao(node);
-        if(node.getConst() != null)
-        {
-            node.getConst().apply(this);
-        }
+        inAConstDecl(node);
         if(node.getId() != null)
         {
             node.getId().apply(this);
@@ -253,11 +121,53 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getValor().apply(this);
         }
-        if(node.getPontovirgula() != null)
+        outAConstDecl(node);
+    }
+
+    public void inAIdVar(AIdVar node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIdVar(AIdVar node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIdVar(AIdVar node)
+    {
+        inAIdVar(node);
+        if(node.getId() != null)
         {
-            node.getPontovirgula().apply(this);
+            node.getId().apply(this);
         }
-        outAConstDeclaracao(node);
+        outAIdVar(node);
+    }
+
+    public void inAVetorVar(AVetorVar node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVetorVar(AVetorVar node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVetorVar(AVetorVar node)
+    {
+        inAVetorVar(node);
+        if(node.getId() != null)
+        {
+            node.getId().apply(this);
+        }
+        if(node.getNInteiro() != null)
+        {
+            node.getNInteiro().apply(this);
+        }
+        outAVetorVar(node);
     }
 
     public void inARealTipo(ARealTipo node)
@@ -323,131 +233,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outACaractereTipo(node);
     }
 
-    public void inAIdVar(AIdVar node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAIdVar(AIdVar node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAIdVar(AIdVar node)
-    {
-        inAIdVar(node);
-        if(node.getId() != null)
-        {
-            node.getId().apply(this);
-        }
-        outAIdVar(node);
-    }
-
-    public void inAVetorVar(AVetorVar node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVetorVar(AVetorVar node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVetorVar(AVetorVar node)
-    {
-        inAVetorVar(node);
-        if(node.getId() != null)
-        {
-            node.getId().apply(this);
-        }
-        if(node.getAbrecolchete() != null)
-        {
-            node.getAbrecolchete().apply(this);
-        }
-        if(node.getNInteiro() != null)
-        {
-            node.getNInteiro().apply(this);
-        }
-        if(node.getFechacolchete() != null)
-        {
-            node.getFechacolchete().apply(this);
-        }
-        outAVetorVar(node);
-    }
-
-    public void inAVirgulaListaVarVirgulaLista(AVirgulaListaVarVirgulaLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVirgulaListaVarVirgulaLista(AVirgulaListaVarVirgulaLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVirgulaListaVarVirgulaLista(AVirgulaListaVarVirgulaLista node)
-    {
-        inAVirgulaListaVarVirgulaLista(node);
-        if(node.getVarVirgulaLista() != null)
-        {
-            node.getVarVirgulaLista().apply(this);
-        }
-        if(node.getVarVirgula() != null)
-        {
-            node.getVarVirgula().apply(this);
-        }
-        outAVirgulaListaVarVirgulaLista(node);
-    }
-
-    public void inAVarVirgulaVarVirgulaLista(AVarVirgulaVarVirgulaLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVarVirgulaVarVirgulaLista(AVarVirgulaVarVirgulaLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVarVirgulaVarVirgulaLista(AVarVirgulaVarVirgulaLista node)
-    {
-        inAVarVirgulaVarVirgulaLista(node);
-        if(node.getVarVirgula() != null)
-        {
-            node.getVarVirgula().apply(this);
-        }
-        outAVarVirgulaVarVirgulaLista(node);
-    }
-
-    public void inAVarVirgula(AVarVirgula node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVarVirgula(AVarVirgula node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVarVirgula(AVarVirgula node)
-    {
-        inAVarVirgula(node);
-        if(node.getVar() != null)
-        {
-            node.getVar().apply(this);
-        }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
-        }
-        outAVarVirgula(node);
-    }
-
     public void inAStringValor(AStringValor node)
     {
         defaultIn(node);
@@ -511,37 +296,29 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outANInteiroValor(node);
     }
 
-    public void inAAtribuicaoComando(AAtribuicaoComando node)
+    public void inAAtribuirComando(AAtribuirComando node)
     {
         defaultIn(node);
     }
 
-    public void outAAtribuicaoComando(AAtribuicaoComando node)
+    public void outAAtribuirComando(AAtribuirComando node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAAtribuicaoComando(AAtribuicaoComando node)
+    public void caseAAtribuirComando(AAtribuirComando node)
     {
-        inAAtribuicaoComando(node);
+        inAAtribuirComando(node);
         if(node.getVar() != null)
         {
             node.getVar().apply(this);
         }
-        if(node.getAtribuicao() != null)
+        if(node.getExpressao() != null)
         {
-            node.getAtribuicao().apply(this);
+            node.getExpressao().apply(this);
         }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
-        }
-        outAAtribuicaoComando(node);
+        outAAtribuirComando(node);
     }
 
     public void inALeiaComando(ALeiaComando node)
@@ -558,29 +335,12 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseALeiaComando(ALeiaComando node)
     {
         inALeiaComando(node);
-        if(node.getLeia() != null)
         {
-            node.getLeia().apply(this);
-        }
-        if(node.getAbreparentese() != null)
-        {
-            node.getAbreparentese().apply(this);
-        }
-        if(node.getVarVirgulaLista() != null)
-        {
-            node.getVarVirgulaLista().apply(this);
-        }
-        if(node.getVar() != null)
-        {
-            node.getVar().apply(this);
-        }
-        if(node.getFechaparentese() != null)
-        {
-            node.getFechaparentese().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
+            List<PVar> copy = new ArrayList<PVar>(node.getVar());
+            for(PVar e : copy)
+            {
+                e.apply(this);
+            }
         }
         outALeiaComando(node);
     }
@@ -599,29 +359,12 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAEscrevaComando(AEscrevaComando node)
     {
         inAEscrevaComando(node);
-        if(node.getEscreva() != null)
         {
-            node.getEscreva().apply(this);
-        }
-        if(node.getAbreparentese() != null)
-        {
-            node.getAbreparentese().apply(this);
-        }
-        if(node.getExpViruglaLista() != null)
-        {
-            node.getExpViruglaLista().apply(this);
-        }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getFechaparentese() != null)
-        {
-            node.getFechaparentese().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
+            List<PExpressao> copy = new ArrayList<PExpressao>(node.getExpressao());
+            for(PExpressao e : copy)
+            {
+                e.apply(this);
+            }
         }
         outAEscrevaComando(node);
     }
@@ -640,43 +383,53 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseASeComando(ASeComando node)
     {
         inASeComando(node);
-        if(node.getSe() != null)
+        if(node.getExpLogica() != null)
         {
-            node.getSe().apply(this);
+            node.getExpLogica().apply(this);
         }
-        if(node.getAbreparentese() != null)
         {
-            node.getAbreparentese().apply(this);
-        }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getFechaparentese() != null)
-        {
-            node.getFechaparentese().apply(this);
-        }
-        if(node.getEntao() != null)
-        {
-            node.getEntao().apply(this);
-        }
-        if(node.getComandoOpLista() != null)
-        {
-            node.getComandoOpLista().apply(this);
-        }
-        if(node.getSenaoComando() != null)
-        {
-            node.getSenaoComando().apply(this);
-        }
-        if(node.getFimse() != null)
-        {
-            node.getFimse().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
+            List<PComando> copy = new ArrayList<PComando>(node.getComando());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
         }
         outASeComando(node);
+    }
+
+    public void inASesenaoComando(ASesenaoComando node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASesenaoComando(ASesenaoComando node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASesenaoComando(ASesenaoComando node)
+    {
+        inASesenaoComando(node);
+        if(node.getExpLogica() != null)
+        {
+            node.getExpLogica().apply(this);
+        }
+        {
+            List<PComando> copy = new ArrayList<PComando>(node.getEntao());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        {
+            List<PComando> copy = new ArrayList<PComando>(node.getSenao());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outASesenaoComando(node);
     }
 
     public void inAAvalieComando(AAvalieComando node)
@@ -693,39 +446,67 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAAvalieComando(AAvalieComando node)
     {
         inAAvalieComando(node);
-        if(node.getAvalie() != null)
+        if(node.getExpressao() != null)
         {
-            node.getAvalie().apply(this);
+            node.getExpressao().apply(this);
         }
-        if(node.getAbreparentese() != null)
         {
-            node.getAbreparentese().apply(this);
+            List<PValor> copy = new ArrayList<PValor>(node.getValor());
+            for(PValor e : copy)
+            {
+                e.apply(this);
+            }
         }
-        if(node.getExp() != null)
         {
-            node.getExp().apply(this);
-        }
-        if(node.getFechaparentese() != null)
-        {
-            node.getFechaparentese().apply(this);
-        }
-        if(node.getCasoValorLista() != null)
-        {
-            node.getCasoValorLista().apply(this);
-        }
-        if(node.getSenaoDoispontos() != null)
-        {
-            node.getSenaoDoispontos().apply(this);
-        }
-        if(node.getFimavalie() != null)
-        {
-            node.getFimavalie().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
+            List<PComando> copy = new ArrayList<PComando>(node.getComando());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
         }
         outAAvalieComando(node);
+    }
+
+    public void inAAvaliesenaoComando(AAvaliesenaoComando node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAAvaliesenaoComando(AAvaliesenaoComando node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAAvaliesenaoComando(AAvaliesenaoComando node)
+    {
+        inAAvaliesenaoComando(node);
+        if(node.getExpressao() != null)
+        {
+            node.getExpressao().apply(this);
+        }
+        {
+            List<PValor> copy = new ArrayList<PValor>(node.getValor());
+            for(PValor e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        {
+            List<PComando> copy = new ArrayList<PComando>(node.getCaso());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        {
+            List<PComando> copy = new ArrayList<PComando>(node.getSenao());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outAAvaliesenaoComando(node);
     }
 
     public void inAEnquantoComando(AEnquantoComando node)
@@ -742,37 +523,16 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAEnquantoComando(AEnquantoComando node)
     {
         inAEnquantoComando(node);
-        if(node.getEnquanto() != null)
+        if(node.getExpLogica() != null)
         {
-            node.getEnquanto().apply(this);
+            node.getExpLogica().apply(this);
         }
-        if(node.getAbreparentese() != null)
         {
-            node.getAbreparentese().apply(this);
-        }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getFechaparentese() != null)
-        {
-            node.getFechaparentese().apply(this);
-        }
-        if(node.getFaca() != null)
-        {
-            node.getFaca().apply(this);
-        }
-        if(node.getComandoOpLista() != null)
-        {
-            node.getComandoOpLista().apply(this);
-        }
-        if(node.getFimenquanto() != null)
-        {
-            node.getFimenquanto().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
+            List<PComando> copy = new ArrayList<PComando>(node.getComando());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
         }
         outAEnquantoComando(node);
     }
@@ -791,33 +551,16 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseARepitaComando(ARepitaComando node)
     {
         inARepitaComando(node);
-        if(node.getRepita() != null)
         {
-            node.getRepita().apply(this);
+            List<PComando> copy = new ArrayList<PComando>(node.getComando());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
         }
-        if(node.getComandoOpLista() != null)
+        if(node.getExpLogica() != null)
         {
-            node.getComandoOpLista().apply(this);
-        }
-        if(node.getAte() != null)
-        {
-            node.getAte().apply(this);
-        }
-        if(node.getAbreparentese() != null)
-        {
-            node.getAbreparentese().apply(this);
-        }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getFechaparentese() != null)
-        {
-            node.getFechaparentese().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
+            node.getExpLogica().apply(this);
         }
         outARepitaComando(node);
     }
@@ -836,1119 +579,671 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAParaComando(AParaComando node)
     {
         inAParaComando(node);
-        if(node.getParaInicio() != null)
+        if(node.getVar() != null)
         {
-            node.getParaInicio().apply(this);
+            node.getVar().apply(this);
         }
-        if(node.getParaFim() != null)
+        if(node.getLeft() != null)
         {
-            node.getParaFim().apply(this);
+            node.getLeft().apply(this);
+        }
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        {
+            List<PComando> copy = new ArrayList<PComando>(node.getComando());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
         }
         outAParaComando(node);
     }
 
-    public void inAPassoComando(APassoComando node)
+    public void inAParapassoComando(AParapassoComando node)
     {
         defaultIn(node);
     }
 
-    public void outAPassoComando(APassoComando node)
+    public void outAParapassoComando(AParapassoComando node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAPassoComando(APassoComando node)
+    public void caseAParapassoComando(AParapassoComando node)
     {
-        inAPassoComando(node);
-        if(node.getParaInicio() != null)
-        {
-            node.getParaInicio().apply(this);
-        }
-        if(node.getPasso() != null)
-        {
-            node.getPasso().apply(this);
-        }
-        if(node.getNInteiro() != null)
-        {
-            node.getNInteiro().apply(this);
-        }
-        if(node.getParaFim() != null)
-        {
-            node.getParaFim().apply(this);
-        }
-        outAPassoComando(node);
-    }
-
-    public void inAListaComandoOpLista(AListaComandoOpLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAListaComandoOpLista(AListaComandoOpLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAListaComandoOpLista(AListaComandoOpLista node)
-    {
-        inAListaComandoOpLista(node);
-        if(node.getComandoOpLista() != null)
-        {
-            node.getComandoOpLista().apply(this);
-        }
-        if(node.getComando() != null)
-        {
-            node.getComando().apply(this);
-        }
-        outAListaComandoOpLista(node);
-    }
-
-    public void inAComandoComandoOpLista(AComandoComandoOpLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAComandoComandoOpLista(AComandoComandoOpLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAComandoComandoOpLista(AComandoComandoOpLista node)
-    {
-        inAComandoComandoOpLista(node);
-        if(node.getComando() != null)
-        {
-            node.getComando().apply(this);
-        }
-        outAComandoComandoOpLista(node);
-    }
-
-    public void inASenaoComando(ASenaoComando node)
-    {
-        defaultIn(node);
-    }
-
-    public void outASenaoComando(ASenaoComando node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseASenaoComando(ASenaoComando node)
-    {
-        inASenaoComando(node);
-        if(node.getSenao() != null)
-        {
-            node.getSenao().apply(this);
-        }
-        if(node.getComandoOpLista() != null)
-        {
-            node.getComandoOpLista().apply(this);
-        }
-        outASenaoComando(node);
-    }
-
-    public void inASenaoDoispontos(ASenaoDoispontos node)
-    {
-        defaultIn(node);
-    }
-
-    public void outASenaoDoispontos(ASenaoDoispontos node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseASenaoDoispontos(ASenaoDoispontos node)
-    {
-        inASenaoDoispontos(node);
-        if(node.getSenao() != null)
-        {
-            node.getSenao().apply(this);
-        }
-        if(node.getDoispontos() != null)
-        {
-            node.getDoispontos().apply(this);
-        }
-        if(node.getComandoOpLista() != null)
-        {
-            node.getComandoOpLista().apply(this);
-        }
-        outASenaoDoispontos(node);
-    }
-
-    public void inACasoValorListaCasoValorLista(ACasoValorListaCasoValorLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outACasoValorListaCasoValorLista(ACasoValorListaCasoValorLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseACasoValorListaCasoValorLista(ACasoValorListaCasoValorLista node)
-    {
-        inACasoValorListaCasoValorLista(node);
-        if(node.getCasoValorLista() != null)
-        {
-            node.getCasoValorLista().apply(this);
-        }
-        if(node.getCasoValor() != null)
-        {
-            node.getCasoValor().apply(this);
-        }
-        outACasoValorListaCasoValorLista(node);
-    }
-
-    public void inACasoValorCasoValorLista(ACasoValorCasoValorLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outACasoValorCasoValorLista(ACasoValorCasoValorLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseACasoValorCasoValorLista(ACasoValorCasoValorLista node)
-    {
-        inACasoValorCasoValorLista(node);
-        if(node.getCasoValor() != null)
-        {
-            node.getCasoValor().apply(this);
-        }
-        outACasoValorCasoValorLista(node);
-    }
-
-    public void inACasoValor(ACasoValor node)
-    {
-        defaultIn(node);
-    }
-
-    public void outACasoValor(ACasoValor node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseACasoValor(ACasoValor node)
-    {
-        inACasoValor(node);
-        if(node.getCaso() != null)
-        {
-            node.getCaso().apply(this);
-        }
-        if(node.getValor() != null)
-        {
-            node.getValor().apply(this);
-        }
-        if(node.getDoispontos() != null)
-        {
-            node.getDoispontos().apply(this);
-        }
-        if(node.getComandoOpLista() != null)
-        {
-            node.getComandoOpLista().apply(this);
-        }
-        outACasoValor(node);
-    }
-
-    public void inAParaInicio(AParaInicio node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAParaInicio(AParaInicio node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAParaInicio(AParaInicio node)
-    {
-        inAParaInicio(node);
-        if(node.getPara() != null)
-        {
-            node.getPara().apply(this);
-        }
+        inAParapassoComando(node);
         if(node.getVar() != null)
         {
             node.getVar().apply(this);
         }
-        if(node.getDe() != null)
-        {
-            node.getDe().apply(this);
-        }
         if(node.getNInteiro() != null)
         {
             node.getNInteiro().apply(this);
         }
-        outAParaInicio(node);
+        if(node.getLeft() != null)
+        {
+            node.getLeft().apply(this);
+        }
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        {
+            List<PComando> copy = new ArrayList<PComando>(node.getComando());
+            for(PComando e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outAParapassoComando(node);
     }
 
-    public void inAParaFim(AParaFim node)
+    public void inAAritmeticaExpressao(AAritmeticaExpressao node)
     {
         defaultIn(node);
     }
 
-    public void outAParaFim(AParaFim node)
+    public void outAAritmeticaExpressao(AAritmeticaExpressao node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAParaFim(AParaFim node)
+    public void caseAAritmeticaExpressao(AAritmeticaExpressao node)
     {
-        inAParaFim(node);
-        if(node.getAte() != null)
-        {
-            node.getAte().apply(this);
-        }
-        if(node.getNInteiro() != null)
-        {
-            node.getNInteiro().apply(this);
-        }
-        if(node.getFaca() != null)
-        {
-            node.getFaca().apply(this);
-        }
-        if(node.getComandoOpLista() != null)
-        {
-            node.getComandoOpLista().apply(this);
-        }
-        if(node.getFimpara() != null)
-        {
-            node.getFimpara().apply(this);
-        }
-        if(node.getPontovirgula() != null)
-        {
-            node.getPontovirgula().apply(this);
-        }
-        outAParaFim(node);
-    }
-
-    public void inAListaExpViruglaLista(AListaExpViruglaLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAListaExpViruglaLista(AListaExpViruglaLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAListaExpViruglaLista(AListaExpViruglaLista node)
-    {
-        inAListaExpViruglaLista(node);
-        if(node.getExpViruglaLista() != null)
-        {
-            node.getExpViruglaLista().apply(this);
-        }
-        if(node.getExpVirgula() != null)
-        {
-            node.getExpVirgula().apply(this);
-        }
-        outAListaExpViruglaLista(node);
-    }
-
-    public void inAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExpVirgulaExpViruglaLista(AExpVirgulaExpViruglaLista node)
-    {
-        inAExpVirgulaExpViruglaLista(node);
-        if(node.getExpVirgula() != null)
-        {
-            node.getExpVirgula().apply(this);
-        }
-        outAExpVirgulaExpViruglaLista(node);
-    }
-
-    public void inAExpVirgula(AExpVirgula node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExpVirgula(AExpVirgula node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExpVirgula(AExpVirgula node)
-    {
-        inAExpVirgula(node);
+        inAAritmeticaExpressao(node);
         if(node.getExp() != null)
         {
             node.getExp().apply(this);
         }
-        if(node.getVirgula() != null)
-        {
-            node.getVirgula().apply(this);
-        }
-        outAExpVirgula(node);
+        outAAritmeticaExpressao(node);
     }
 
-    public void inAExp(AExp node)
+    public void inALogicaExpressao(ALogicaExpressao node)
     {
         defaultIn(node);
     }
 
-    public void outAExp(AExp node)
+    public void outALogicaExpressao(ALogicaExpressao node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAExp(AExp node)
+    public void caseALogicaExpressao(ALogicaExpressao node)
     {
-        inAExp(node);
-        if(node.getLogicaOu() != null)
+        inALogicaExpressao(node);
+        if(node.getExpLogica() != null)
         {
-            node.getLogicaOu().apply(this);
+            node.getExpLogica().apply(this);
         }
-        outAExp(node);
+        outALogicaExpressao(node);
     }
 
-    public void inASomaSomaExp(ASomaSomaExp node)
+    public void inAValorExp(AValorExp node)
     {
         defaultIn(node);
     }
 
-    public void outASomaSomaExp(ASomaSomaExp node)
+    public void outAValorExp(AValorExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASomaSomaExp(ASomaSomaExp node)
+    public void caseAValorExp(AValorExp node)
     {
-        inASomaSomaExp(node);
-        if(node.getSomaExp() != null)
-        {
-            node.getSomaExp().apply(this);
-        }
-        if(node.getSoma() != null)
-        {
-            node.getSoma().apply(this);
-        }
-        if(node.getTermo() != null)
-        {
-            node.getTermo().apply(this);
-        }
-        outASomaSomaExp(node);
-    }
-
-    public void inAProxSomaExp(AProxSomaExp node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAProxSomaExp(AProxSomaExp node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAProxSomaExp(AProxSomaExp node)
-    {
-        inAProxSomaExp(node);
-        if(node.getTermo() != null)
-        {
-            node.getTermo().apply(this);
-        }
-        outAProxSomaExp(node);
-    }
-
-    public void inAMultTermo(AMultTermo node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAMultTermo(AMultTermo node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAMultTermo(AMultTermo node)
-    {
-        inAMultTermo(node);
-        if(node.getTermo() != null)
-        {
-            node.getTermo().apply(this);
-        }
-        if(node.getMult() != null)
-        {
-            node.getMult().apply(this);
-        }
-        if(node.getNegar() != null)
-        {
-            node.getNegar().apply(this);
-        }
-        outAMultTermo(node);
-    }
-
-    public void inAProxTermo(AProxTermo node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAProxTermo(AProxTermo node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAProxTermo(AProxTermo node)
-    {
-        inAProxTermo(node);
-        if(node.getNegar() != null)
-        {
-            node.getNegar().apply(this);
-        }
-        outAProxTermo(node);
-    }
-
-    public void inANegNegar(ANegNegar node)
-    {
-        defaultIn(node);
-    }
-
-    public void outANegNegar(ANegNegar node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseANegNegar(ANegNegar node)
-    {
-        inANegNegar(node);
-        if(node.getNegacao() != null)
-        {
-            node.getNegacao().apply(this);
-        }
-        if(node.getNegar() != null)
-        {
-            node.getNegar().apply(this);
-        }
-        outANegNegar(node);
-    }
-
-    public void inAFatorexpNegar(AFatorexpNegar node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAFatorexpNegar(AFatorexpNegar node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAFatorexpNegar(AFatorexpNegar node)
-    {
-        inAFatorexpNegar(node);
-        if(node.getFator() != null)
-        {
-            node.getFator().apply(this);
-        }
-        outAFatorexpNegar(node);
-    }
-
-    public void inAExpFator(AExpFator node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAExpFator(AExpFator node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAExpFator(AExpFator node)
-    {
-        inAExpFator(node);
-        if(node.getAbreparentese() != null)
-        {
-            node.getAbreparentese().apply(this);
-        }
-        if(node.getExp() != null)
-        {
-            node.getExp().apply(this);
-        }
-        if(node.getFechaparentese() != null)
-        {
-            node.getFechaparentese().apply(this);
-        }
-        outAExpFator(node);
-    }
-
-    public void inAValorFator(AValorFator node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAValorFator(AValorFator node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAValorFator(AValorFator node)
-    {
-        inAValorFator(node);
+        inAValorExp(node);
         if(node.getValor() != null)
         {
             node.getValor().apply(this);
         }
-        outAValorFator(node);
+        outAValorExp(node);
     }
 
-    public void inAVarFator(AVarFator node)
+    public void inAVarExp(AVarExp node)
     {
         defaultIn(node);
     }
 
-    public void outAVarFator(AVarFator node)
+    public void outAVarExp(AVarExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAVarFator(AVarFator node)
+    public void caseAVarExp(AVarExp node)
     {
-        inAVarFator(node);
+        inAVarExp(node);
         if(node.getVar() != null)
         {
             node.getVar().apply(this);
         }
-        outAVarFator(node);
+        outAVarExp(node);
     }
 
-    public void inALogXorLogicaOu(ALogXorLogicaOu node)
+    public void inAExpparExp(AExpparExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogXorLogicaOu(ALogXorLogicaOu node)
+    public void outAExpparExp(AExpparExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogXorLogicaOu(ALogXorLogicaOu node)
+    public void caseAExpparExp(AExpparExp node)
     {
-        inALogXorLogicaOu(node);
-        if(node.getLogicaXor() != null)
+        inAExpparExp(node);
+        if(node.getExp() != null)
         {
-            node.getLogicaXor().apply(this);
+            node.getExp().apply(this);
         }
-        outALogXorLogicaOu(node);
+        outAExpparExp(node);
     }
 
-    public void inALogOuLogicaOu(ALogOuLogicaOu node)
+    public void inAMenosexpExp(AMenosexpExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogOuLogicaOu(ALogOuLogicaOu node)
+    public void outAMenosexpExp(AMenosexpExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogOuLogicaOu(ALogOuLogicaOu node)
+    public void caseAMenosexpExp(AMenosexpExp node)
     {
-        inALogOuLogicaOu(node);
-        if(node.getLogicaOu() != null)
+        inAMenosexpExp(node);
+        if(node.getExp() != null)
         {
-            node.getLogicaOu().apply(this);
+            node.getExp().apply(this);
         }
-        if(node.getOu() != null)
-        {
-            node.getOu().apply(this);
-        }
-        if(node.getLogicaXor() != null)
-        {
-            node.getLogicaXor().apply(this);
-        }
-        outALogOuLogicaOu(node);
+        outAMenosexpExp(node);
     }
 
-    public void inALogELogicaXor(ALogELogicaXor node)
+    public void inASomaExp(ASomaExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogELogicaXor(ALogELogicaXor node)
+    public void outASomaExp(ASomaExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogELogicaXor(ALogELogicaXor node)
+    public void caseASomaExp(ASomaExp node)
     {
-        inALogELogicaXor(node);
-        if(node.getLogicaE() != null)
+        inASomaExp(node);
+        if(node.getLeft() != null)
         {
-            node.getLogicaE().apply(this);
+            node.getLeft().apply(this);
         }
-        outALogELogicaXor(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outASomaExp(node);
     }
 
-    public void inALogXorLogicaXor(ALogXorLogicaXor node)
+    public void inASubExp(ASubExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogXorLogicaXor(ALogXorLogicaXor node)
+    public void outASubExp(ASubExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogXorLogicaXor(ALogXorLogicaXor node)
+    public void caseASubExp(ASubExp node)
     {
-        inALogXorLogicaXor(node);
-        if(node.getLogicaXor() != null)
+        inASubExp(node);
+        if(node.getLeft() != null)
         {
-            node.getLogicaXor().apply(this);
+            node.getLeft().apply(this);
         }
-        if(node.getXor() != null)
+        if(node.getRight() != null)
         {
-            node.getXor().apply(this);
+            node.getRight().apply(this);
         }
-        if(node.getLogicaE() != null)
-        {
-            node.getLogicaE().apply(this);
-        }
-        outALogXorLogicaXor(node);
+        outASubExp(node);
     }
 
-    public void inALogIgualdadeLogicaE(ALogIgualdadeLogicaE node)
+    public void inAMultExp(AMultExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogIgualdadeLogicaE(ALogIgualdadeLogicaE node)
+    public void outAMultExp(AMultExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogIgualdadeLogicaE(ALogIgualdadeLogicaE node)
+    public void caseAMultExp(AMultExp node)
     {
-        inALogIgualdadeLogicaE(node);
-        if(node.getLogicaIgualdade() != null)
+        inAMultExp(node);
+        if(node.getLeft() != null)
         {
-            node.getLogicaIgualdade().apply(this);
+            node.getLeft().apply(this);
         }
-        outALogIgualdadeLogicaE(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAMultExp(node);
     }
 
-    public void inALogELogicaE(ALogELogicaE node)
+    public void inADivExp(ADivExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogELogicaE(ALogELogicaE node)
+    public void outADivExp(ADivExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogELogicaE(ALogELogicaE node)
+    public void caseADivExp(ADivExp node)
     {
-        inALogELogicaE(node);
-        if(node.getLogicaE() != null)
+        inADivExp(node);
+        if(node.getLeft() != null)
         {
-            node.getLogicaE().apply(this);
+            node.getLeft().apply(this);
         }
-        if(node.getE() != null)
+        if(node.getRight() != null)
         {
-            node.getE().apply(this);
+            node.getRight().apply(this);
         }
-        if(node.getLogicaIgualdade() != null)
-        {
-            node.getLogicaIgualdade().apply(this);
-        }
-        outALogELogicaE(node);
+        outADivExp(node);
     }
 
-    public void inALogmaiorLogicaIgualdade(ALogmaiorLogicaIgualdade node)
+    public void inALogicaExp(ALogicaExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogmaiorLogicaIgualdade(ALogmaiorLogicaIgualdade node)
+    public void outALogicaExp(ALogicaExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogmaiorLogicaIgualdade(ALogmaiorLogicaIgualdade node)
+    public void caseALogicaExp(ALogicaExp node)
     {
-        inALogmaiorLogicaIgualdade(node);
-        if(node.getLogicaMaior() != null)
+        inALogicaExp(node);
+        if(node.getExpLogica() != null)
         {
-            node.getLogicaMaior().apply(this);
+            node.getExpLogica().apply(this);
         }
-        outALogmaiorLogicaIgualdade(node);
+        outALogicaExp(node);
     }
 
-    public void inALogigualLogicaIgualdade(ALogigualLogicaIgualdade node)
+    public void inAExpExp(AExpExp node)
     {
         defaultIn(node);
     }
 
-    public void outALogigualLogicaIgualdade(ALogigualLogicaIgualdade node)
+    public void outAExpExp(AExpExp node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogigualLogicaIgualdade(ALogigualLogicaIgualdade node)
+    public void caseAExpExp(AExpExp node)
     {
-        inALogigualLogicaIgualdade(node);
-        if(node.getLogicaIgualdade() != null)
+        inAExpExp(node);
+        if(node.getExpressao() != null)
         {
-            node.getLogicaIgualdade().apply(this);
+            node.getExpressao().apply(this);
         }
-        if(node.getIgualdade() != null)
-        {
-            node.getIgualdade().apply(this);
-        }
-        if(node.getLogicaMaior() != null)
-        {
-            node.getLogicaMaior().apply(this);
-        }
-        outALogigualLogicaIgualdade(node);
+        outAExpExp(node);
     }
 
-    public void inALogmenorLogicaMaior(ALogmenorLogicaMaior node)
+    public void inAParlogicaExpLogica(AParlogicaExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outALogmenorLogicaMaior(ALogmenorLogicaMaior node)
+    public void outAParlogicaExpLogica(AParlogicaExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogmenorLogicaMaior(ALogmenorLogicaMaior node)
+    public void caseAParlogicaExpLogica(AParlogicaExpLogica node)
     {
-        inALogmenorLogicaMaior(node);
-        if(node.getLogicaMenor() != null)
+        inAParlogicaExpLogica(node);
+        if(node.getExpLogica() != null)
         {
-            node.getLogicaMenor().apply(this);
+            node.getExpLogica().apply(this);
         }
-        outALogmenorLogicaMaior(node);
+        outAParlogicaExpLogica(node);
     }
 
-    public void inALogmaiorLogicaMaior(ALogmaiorLogicaMaior node)
+    public void inAIgualExpLogica(AIgualExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outALogmaiorLogicaMaior(ALogmaiorLogicaMaior node)
+    public void outAIgualExpLogica(AIgualExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogmaiorLogicaMaior(ALogmaiorLogicaMaior node)
+    public void caseAIgualExpLogica(AIgualExpLogica node)
     {
-        inALogmaiorLogicaMaior(node);
-        if(node.getLogicaMaior() != null)
+        inAIgualExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getLogicaMaior().apply(this);
+            node.getLeft().apply(this);
         }
-        if(node.getRelacionalMaior() != null)
+        if(node.getRight() != null)
         {
-            node.getRelacionalMaior().apply(this);
+            node.getRight().apply(this);
         }
-        if(node.getLogicaMenor() != null)
-        {
-            node.getLogicaMenor().apply(this);
-        }
-        outALogmaiorLogicaMaior(node);
+        outAIgualExpLogica(node);
     }
 
-    public void inASomaLogicaMenor(ASomaLogicaMenor node)
+    public void inAIguallogicaExpLogica(AIguallogicaExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outASomaLogicaMenor(ASomaLogicaMenor node)
+    public void outAIguallogicaExpLogica(AIguallogicaExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASomaLogicaMenor(ASomaLogicaMenor node)
+    public void caseAIguallogicaExpLogica(AIguallogicaExpLogica node)
     {
-        inASomaLogicaMenor(node);
-        if(node.getSomaExp() != null)
+        inAIguallogicaExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getSomaExp().apply(this);
+            node.getLeft().apply(this);
         }
-        outASomaLogicaMenor(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAIguallogicaExpLogica(node);
     }
 
-    public void inALogmenorLogicaMenor(ALogmenorLogicaMenor node)
+    public void inADiferenteExpLogica(ADiferenteExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outALogmenorLogicaMenor(ALogmenorLogicaMenor node)
+    public void outADiferenteExpLogica(ADiferenteExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseALogmenorLogicaMenor(ALogmenorLogicaMenor node)
+    public void caseADiferenteExpLogica(ADiferenteExpLogica node)
     {
-        inALogmenorLogicaMenor(node);
-        if(node.getLogicaMenor() != null)
+        inADiferenteExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getLogicaMenor().apply(this);
+            node.getLeft().apply(this);
         }
-        if(node.getRelacionalMenor() != null)
+        if(node.getRight() != null)
         {
-            node.getRelacionalMenor().apply(this);
+            node.getRight().apply(this);
         }
-        if(node.getSomaExp() != null)
-        {
-            node.getSomaExp().apply(this);
-        }
-        outALogmenorLogicaMenor(node);
+        outADiferenteExpLogica(node);
     }
 
-    public void inAMultiplicacaoMult(AMultiplicacaoMult node)
+    public void inADiferentelogicaExpLogica(ADiferentelogicaExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outAMultiplicacaoMult(AMultiplicacaoMult node)
+    public void outADiferentelogicaExpLogica(ADiferentelogicaExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMultiplicacaoMult(AMultiplicacaoMult node)
+    public void caseADiferentelogicaExpLogica(ADiferentelogicaExpLogica node)
     {
-        inAMultiplicacaoMult(node);
-        if(node.getMultiplicacao() != null)
+        inADiferentelogicaExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getMultiplicacao().apply(this);
+            node.getLeft().apply(this);
         }
-        outAMultiplicacaoMult(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outADiferentelogicaExpLogica(node);
     }
 
-    public void inADivisaoMult(ADivisaoMult node)
+    public void inAMenorigualExpLogica(AMenorigualExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outADivisaoMult(ADivisaoMult node)
+    public void outAMenorigualExpLogica(AMenorigualExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseADivisaoMult(ADivisaoMult node)
+    public void caseAMenorigualExpLogica(AMenorigualExpLogica node)
     {
-        inADivisaoMult(node);
-        if(node.getDivisao() != null)
+        inAMenorigualExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getDivisao().apply(this);
+            node.getLeft().apply(this);
         }
-        outADivisaoMult(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAMenorigualExpLogica(node);
     }
 
-    public void inAAdicaoSoma(AAdicaoSoma node)
+    public void inAMaiorigualExpLogica(AMaiorigualExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outAAdicaoSoma(AAdicaoSoma node)
+    public void outAMaiorigualExpLogica(AMaiorigualExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAAdicaoSoma(AAdicaoSoma node)
+    public void caseAMaiorigualExpLogica(AMaiorigualExpLogica node)
     {
-        inAAdicaoSoma(node);
-        if(node.getAdicao() != null)
+        inAMaiorigualExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getAdicao().apply(this);
+            node.getLeft().apply(this);
         }
-        outAAdicaoSoma(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAMaiorigualExpLogica(node);
     }
 
-    public void inASubtracaoSoma(ASubtracaoSoma node)
+    public void inAMenorExpLogica(AMenorExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outASubtracaoSoma(ASubtracaoSoma node)
+    public void outAMenorExpLogica(AMenorExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASubtracaoSoma(ASubtracaoSoma node)
+    public void caseAMenorExpLogica(AMenorExpLogica node)
     {
-        inASubtracaoSoma(node);
-        if(node.getSubtracao() != null)
+        inAMenorExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getSubtracao().apply(this);
+            node.getLeft().apply(this);
         }
-        outASubtracaoSoma(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAMenorExpLogica(node);
     }
 
-    public void inAMenorigualRelacionalMenor(AMenorigualRelacionalMenor node)
+    public void inAMaiorExpLogica(AMaiorExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outAMenorigualRelacionalMenor(AMenorigualRelacionalMenor node)
+    public void outAMaiorExpLogica(AMaiorExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMenorigualRelacionalMenor(AMenorigualRelacionalMenor node)
+    public void caseAMaiorExpLogica(AMaiorExpLogica node)
     {
-        inAMenorigualRelacionalMenor(node);
-        if(node.getMenorigual() != null)
+        inAMaiorExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getMenorigual().apply(this);
+            node.getLeft().apply(this);
         }
-        outAMenorigualRelacionalMenor(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAMaiorExpLogica(node);
     }
 
-    public void inAMenorRelacionalMenor(AMenorRelacionalMenor node)
+    public void inANegarlogicaExpLogica(ANegarlogicaExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outAMenorRelacionalMenor(AMenorRelacionalMenor node)
+    public void outANegarlogicaExpLogica(ANegarlogicaExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMenorRelacionalMenor(AMenorRelacionalMenor node)
+    public void caseANegarlogicaExpLogica(ANegarlogicaExpLogica node)
     {
-        inAMenorRelacionalMenor(node);
-        if(node.getMenor() != null)
+        inANegarlogicaExpLogica(node);
+        if(node.getExpLogica() != null)
         {
-            node.getMenor().apply(this);
+            node.getExpLogica().apply(this);
         }
-        outAMenorRelacionalMenor(node);
+        outANegarlogicaExpLogica(node);
     }
 
-    public void inAMaiorigualRelacionalMaior(AMaiorigualRelacionalMaior node)
+    public void inAElogicoExpLogica(AElogicoExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outAMaiorigualRelacionalMaior(AMaiorigualRelacionalMaior node)
+    public void outAElogicoExpLogica(AElogicoExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMaiorigualRelacionalMaior(AMaiorigualRelacionalMaior node)
+    public void caseAElogicoExpLogica(AElogicoExpLogica node)
     {
-        inAMaiorigualRelacionalMaior(node);
-        if(node.getMaiorigual() != null)
+        inAElogicoExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getMaiorigual().apply(this);
+            node.getLeft().apply(this);
         }
-        outAMaiorigualRelacionalMaior(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAElogicoExpLogica(node);
     }
 
-    public void inAMaiorRelacionalMaior(AMaiorRelacionalMaior node)
+    public void inAOulogicoExpLogica(AOulogicoExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outAMaiorRelacionalMaior(AMaiorRelacionalMaior node)
+    public void outAOulogicoExpLogica(AOulogicoExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMaiorRelacionalMaior(AMaiorRelacionalMaior node)
+    public void caseAOulogicoExpLogica(AOulogicoExpLogica node)
     {
-        inAMaiorRelacionalMaior(node);
-        if(node.getMaior() != null)
+        inAOulogicoExpLogica(node);
+        if(node.getLeft() != null)
         {
-            node.getMaior().apply(this);
+            node.getLeft().apply(this);
         }
-        outAMaiorRelacionalMaior(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAOulogicoExpLogica(node);
     }
 
-    public void inAIgualIgualdade(AIgualIgualdade node)
+    public void inAXorlogicoExpLogica(AXorlogicoExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outAIgualIgualdade(AIgualIgualdade node)
+    public void outAXorlogicoExpLogica(AXorlogicoExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAIgualIgualdade(AIgualIgualdade node)
+    public void caseAXorlogicoExpLogica(AXorlogicoExpLogica node)
     {
-        inAIgualIgualdade(node);
-        if(node.getIgual() != null)
+        inAXorlogicoExpLogica(node);
+        if(node.getLfet() != null)
         {
-            node.getIgual().apply(this);
+            node.getLfet().apply(this);
         }
-        outAIgualIgualdade(node);
+        if(node.getRight() != null)
+        {
+            node.getRight().apply(this);
+        }
+        outAXorlogicoExpLogica(node);
     }
 
-    public void inADiferenteIgualdade(ADiferenteIgualdade node)
+    public void inAExpExpLogica(AExpExpLogica node)
     {
         defaultIn(node);
     }
 
-    public void outADiferenteIgualdade(ADiferenteIgualdade node)
+    public void outAExpExpLogica(AExpExpLogica node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseADiferenteIgualdade(ADiferenteIgualdade node)
+    public void caseAExpExpLogica(AExpExpLogica node)
     {
-        inADiferenteIgualdade(node);
-        if(node.getDiferente() != null)
+        inAExpExpLogica(node);
+        if(node.getExpressao() != null)
         {
-            node.getDiferente().apply(this);
+            node.getExpressao().apply(this);
         }
-        outADiferenteIgualdade(node);
+        outAExpExpLogica(node);
     }
 }

@@ -82,19 +82,6 @@ public class Lexico extends Lexer {
                     comentario = null;
                 }
             }
-        } 
-        
-        if (token.getText().equals("=") || token.getText().equals("<>"))
-        {
-            igualCount ++;
-            if (igualCount > 1)
-            {
-                String erro = "[%s,%s] esperando ')'";
-                throw new LexerException(null, String.format(erro, token.getLine(), token.getPos() - 1));
-            }
-        }
-        else
-            if ((token.getText().equals("(") && igualCount > 0) || token.getText().equals(")") || token.getText().equals(";"))    
-                igualCount --;
+        }        
     }
 }
