@@ -75,7 +75,12 @@ public class Lexico extends Lexer {
                     contador--;
                 }
                 if (contador != 0) {
-                    token = null;
+                    if (token instanceof EOF)
+                    {
+                        throw new LexerException(null, "Erro: Bloco de comentário aninhado não finalizado!");
+                    }
+                    else
+                        token = null;
                 } else {
                     token = comentario;
                     state = State.NORMAL;
